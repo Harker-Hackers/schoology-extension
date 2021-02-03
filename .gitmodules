@@ -1,0 +1,6 @@
+[submodule "external/schoologyplus"]
+	path = external/schoologyplus
+	url = https://github.com/aopell/SchoologyPlus
+[submodule "external/grade-disp"]
+	path = external/grade-disp
+	url = https://github.com/Dixits1/sc-grade-displayer
