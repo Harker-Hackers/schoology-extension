@@ -24,12 +24,51 @@ li.appendChild(ddelem);
 userMenu.insertBefore(li, userMenu.childNodes[4]);
 };
 
+try{
 but.onclick=k;
+} catch(err){};
+
+//GETTING PW AND USERNAME
+if (location.pathname.includes("/login")){
+document.getElementById("s-user-login-form").onsubmit=function(){
+	localStorage.setItem("scUser", document.getElementById("edit-mail").value);
+	localStorage.setItem("scPass", document.getElementById("edit-pass").value);
+}
+};
+
 
 //SCHEDULE
 if (location.pathname=="/schedule"){
-document.getElementById("content-wrapper").innerHTML="NOT IMPLEMENTED YET";
+document.getElementById("content-wrapper").innerHTML=`
+<style>
+.loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #3498db;
+  width: 25px;
+  height: 25px;
+  margin-left:10px;
+  margin-top:10px;
+  margin-bottom:10px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
 
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+<div style="background-color:rgb(255,255,255);border: 1px solid rgb(199,199,199);">
+<p style="margin-left:5px;">Loading...</p>
+<div class=loader></div>
+</div>
+`;
 
 }
