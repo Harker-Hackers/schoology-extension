@@ -2,6 +2,12 @@ var but=document.getElementsByClassName("_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5
 
 function k(){
 var userMenu=document.getElementsByClassName("_2T2dA Header-header-drop-menu-3SaYV util-min-width-twenty-two-2a0Y- util-max-width-twenty-six-1OJjn _38KgL _35hYo _2mWUT _2ue1O les2- util-box-shadow-dropdown-2Bl9b util-margin-top-negative-point-four-3GRLY _3Xw3k _2trRU j17AQ S42JQ VSOiH _3RmDr fjQuT uQOmx")[0];
+
+if (userMenu==undefined){
+	setTimeout(k,5);
+	return;
+};
+
 for (i=0;i<userMenu.children.length;i++){
 	console.log(userMenu.children[i].id);
     if (userMenu.children[i].id=="infCamp"){
@@ -12,9 +18,18 @@ var li=document.createElement("li");
 var ddelem=document.createElement("a")
 ddelem.className="_2JX1Q _3VHSs _1k0yk _3_bfp _1tpub dVlNp _3v0y7 _3eD4l _3ghFm _3LeCL _3lLLU _2gJbx util-text-decoration-none-1n0lI Header-header-button-active-state-3AvBm Header-header-drop-menu-3SaYV Header-header-drop-menu-item-3d3IZ";
 li.id="infCamp";
-ddelem.textContent="BADLINK"
+ddelem.textContent="Schedule"
+ddelem.href="/schedule";
 li.appendChild(ddelem);
-userMenu.appendChild(li);
+userMenu.insertBefore(li, userMenu.childNodes[4]);
 };
 
-but.onclick=function(){setTimeout(k,30)};
+but.onclick=k;
+
+//SCHEDULE
+if (location.pathname=="/schedule"){
+document.getElementById("content-wrapper").innerHTML="NOT IMPLEMENTED YET";
+
+
+
+}
