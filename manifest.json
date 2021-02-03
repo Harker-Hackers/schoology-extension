@@ -1,0 +1,13 @@
+{
+  "name": "Schoology Upgrader",
+  "version": "1.0",
+  "description": "Upgrade your schoology and increase your productivity!",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+	  "matches": ["https://schoology.harker.org/*"],
+	  "js":["main.js"]
+	}
+  ],
+  "manifest_version": 2
+}
