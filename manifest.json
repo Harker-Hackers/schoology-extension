@@ -5,9 +5,12 @@
   "permissions": ["storage"],
   "content_scripts": [
     {
-	  "matches": ["https://schoology.harker.org/*"],
-	  "js":["main.js"]
-	}
+      "matches": ["https://schoology.harker.org/*"],
+      "js":["main.js"]
+    }
   ],
+  "browser_action": {
+    "default_icon": "images/harker.png"
+  },
   "manifest_version": 2
 }
