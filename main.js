@@ -40,6 +40,7 @@ document.getElementById("s-user-login-form").onsubmit=function(){
 
 //SCHEDULE
 if (location.pathname=="/schedule"){
+try{
 document.getElementById("content-wrapper").innerHTML=`
 <style>
 .loader {
@@ -71,23 +72,22 @@ document.getElementById("content-wrapper").innerHTML=`
 <div class=loader></div>
 </div>
 `;
-var postCallback=function(prevData){
-	var redir=prevData.match("<input type=\"hidden\" name=\"login_destination\" id=\"login_destination\" value=\"(.*)>")[1].slice(0,-3);
-	console.log(redir);
-	document.write(prevData);
+} catch (err){};
+var formCallBack=function(pData){
+	document.write(pData);
+	console.log("cont: "+String(pData));
 	chrome.runtime.sendMessage(
-	  {type:"urlPost",url:"https://www.harker.org/fs/auth/finalsite/callback", postData:{
-		  username:localStorage.getItem("scUser"),
-		  password:localStorage.getItem("scPass"),
-		  protected_page:"false",
-		  authenticity_token: "blasdjfksl",
-		  login_destination: redir
-	  }},
-      data => document.write('data');
-	)
+	{type:"url",url:"https://harkerca.infinitecampus.org/campus/SSO/harker/SIS/"},
+	data => console.log(data));
 }
 
+var username=localStorage.getItem("scUser");
+var pass=localStorage.getItem("scPass");
 chrome.runtime.sendMessage(
-{type:"url",url:"https://harkerca.infinitecampus.org/campus/SSO/harker/SIS/"},
-data => postCallback(data));
+	 {type:"urlPost",url:"https://www.harker.org/fs/auth/finalsite/callback", postData:{
+		 username:username,
+		 password:pass,
+	 }},
+     data => formCallBack(data)
+)
 }
