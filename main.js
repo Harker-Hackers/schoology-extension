@@ -1,3 +1,5 @@
+var xhr = new XMLHttpRequest();
+
 var but=document.getElementsByClassName("_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw util-height-six-3PHnk Header-header-button-active-state-3AvBm Header-header-button-1EE8Y Z_KgC fjQuT uQOmx")[0];
 
 function k(){
@@ -36,7 +38,6 @@ document.getElementById("s-user-login-form").onsubmit=function(){
 }
 };
 
-
 //SCHEDULE
 if (location.pathname=="/schedule"){
 document.getElementById("content-wrapper").innerHTML=`
@@ -70,5 +71,23 @@ document.getElementById("content-wrapper").innerHTML=`
 <div class=loader></div>
 </div>
 `;
+var postCallback=function(prevData){
+	var redir=prevData.match("<input type=\"hidden\" name=\"login_destination\" id=\"login_destination\" value=\"(.*)>")[1].slice(0,-3);
+	console.log(redir);
+	document.write(prevData);
+	chrome.runtime.sendMessage(
+	  {type:"urlPost",url:"https://www.harker.org/fs/auth/finalsite/callback", postData:{
+		  username:localStorage.getItem("scUser"),
+		  password:localStorage.getItem("scPass"),
+		  protected_page:"false",
+		  authenticity_token: "blasdjfksl",
+		  login_destination: redir
+	  }},
+      data => document.write('data');
+	)
+}
 
+chrome.runtime.sendMessage(
+{type:"url",url:"https://harkerca.infinitecampus.org/campus/SSO/harker/SIS/"},
+data => postCallback(data));
 }

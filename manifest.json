@@ -2,13 +2,17 @@
   "name": "Schoology Upgrader",
   "version": "1.0",
   "description": "Upgrade your schoology and increase your productivity!",
-  "permissions": ["storage"],
+  "permissions": ["storage","https://harkerca.infinitecampus.org/*/","https://www.harker.org/*/","https://saml.finalsite.com/*/"],
   "content_scripts": [
     {
       "matches": ["https://schoology.harker.org/*"],
       "js":["main.js"]
     }
   ],
+  "background": {
+    "persistent":false,
+	"scripts": ["background.js"]
+  },
   "browser_action": {
     "default_icon": "images/harker.png"
   },
