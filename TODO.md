@@ -1,4 +1,4 @@
-Aarav - I have parsed the schedule a bit so now it looks like this:
+I have parsed the schedule a bit so now it looks like this:
 ```
 Monday
 
