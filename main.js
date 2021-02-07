@@ -73,18 +73,33 @@ document.getElementById("content-wrapper").innerHTML=`
 </div>
 `;
 } catch (err){};
+var formCallback3 = function(){
+	chrome.runtime.sendMessage(
+	{type:"url",cors:true,url:"https://harkerca.infinitecampus.org/campus/resources/portal/roster?_expand=%7BsectionPlacements-%7Bterm%7D%7D"},
+	data => document.write(data))
+}
+var formCallBack2 = function(pData){
+	try{
+	var samltok=pData.match("<input type=\"hidden\" name=\"SAMLResponse\" value=\"(.*)\" /><")[1];
+	chrome.runtime.sendMessage(
+	 {type:"urlPost",url:"https://harkerca.infinitecampus.org/campus/SSO/harker/SIS/", rawData:{
+		 SAMLResponse:samltok,
+		 RelayState:"/harker/SIS/"
+	 }},
+     data => formCallback3()
+	)
+	} catch(err){formCallback3()}
+}
 var formCallBack=function(pData){
-	document.write(pData);
-	console.log("cont: "+String(pData));
 	chrome.runtime.sendMessage(
 	{type:"url",url:"https://harkerca.infinitecampus.org/campus/SSO/harker/SIS/"},
-	data => console.log(data));
+	data => formCallBack2(data));
 }
 
 var username=localStorage.getItem("scUser");
 var pass=localStorage.getItem("scPass");
 chrome.runtime.sendMessage(
-	 {type:"urlPost",url:"https://www.harker.org/fs/auth/finalsite/callback", postData:{
+	 {type:"urlPost",url:"https://www.harker.org/fs/auth/finalsite/callback", formData:{
 		 username:username,
 		 password:pass,
 	 }},

@@ -2,7 +2,7 @@
   "name": "Schoology Upgrader",
   "version": "1.0",
   "description": "Upgrade your schoology and increase your productivity!",
-  "permissions": ["storage","https://harkerca.infinitecampus.org/*/","https://www.harker.org/*/","https://saml.finalsite.com/*/", "*://*/"],
+  "permissions": ["storage","https://harkerca.infinitecampus.org/*/","https://www.harker.org/*/","https://saml.finalsite.com/*/"],
   "content_scripts": [
     {
       "matches": ["https://schoology.harker.org/*"],
