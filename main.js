@@ -62,6 +62,10 @@ document.getElementById("content-wrapper").innerHTML=`
 	border: 1px solid rgb(199,199,199);
 }
 
+.selDay {
+	border: 1px solid rgb(199,199,30);
+}
+
 .dayName {
 	margin-left:10px;
 	margin-top:5px;
@@ -148,6 +152,8 @@ var today=new Date();
 var psn={1:"M",2:"T",3:"W",4:"R",5:"F"}
 var psNames={"M":"Monday","T":"Tuesday","W":"Wednesday","R":"Thursday","F":"Friday"};
 
+var curDay=psn[today.getDay()];
+
 for (dy in psn){
 	
 	var day = psn[dy];
@@ -185,6 +191,9 @@ for (dy in psn){
 	
 	var dayDiv=document.createElement("div");
 	dayDiv.className="daySched";
+	if (day==curDay) {
+		dayDiv.className+=" selDay";
+	}
 	var tempP=document.createElement("p");
 	tempP.className="dayName";
 	tempP.textContent=psNames[day];
@@ -202,9 +211,23 @@ for (dy in psn){
 		stspanb.className="bTime";
 		p.className="courseName";
 		b.textContent=crsList[i].courseName;
-
-		stspan.textContent=crsList[i].startTime;
-		stspan2.textContent=crsList[i].endTime;
+		var parseTime=function(t){
+			var tm = t.split(":");
+			var apm="am";
+			if (tm[0][0]=="0"){tm[0]=tm[0].slice(1)}
+			var pt=parseInt(tm[0]);
+			if (pt>12){
+				pt-=12;
+				apm="pm";
+			}
+			tm[0]=String(pt);
+			tm.pop();
+			tm=tm.join(":");
+			tm+=" "+apm;
+			return tm;
+		}
+		stspan.textContent=parseTime(crsList[i].startTime);
+		stspan2.textContent=parseTime(crsList[i].endTime);
 		stspanb.textContent=" - ";
 		p.appendChild(b);
 		p.appendChild(stspan);
