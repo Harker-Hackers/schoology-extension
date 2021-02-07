@@ -33,8 +33,8 @@ but.onclick=k;
 //GETTING PW AND USERNAME
 if (location.pathname.includes("/login")){
 document.getElementById("s-user-login-form").onsubmit=function(){
-	localStorage.setItem("scUser", document.getElementById("edit-mail").value);
-	localStorage.setItem("scPass", document.getElementById("edit-pass").value);
+	chrome.storage.local.set({"scUser":document.getElementById("edit-mail").value});
+	chrome.storage.local.set({"scPass":document.getElementById("edit-pass").value});
 }
 };
 
@@ -101,6 +101,7 @@ document.getElementById("content-wrapper").innerHTML=`
 </div>
 `;
 } catch (err){};
+
 var formCallback3 = function(){
 	chrome.runtime.sendMessage(
 	{type:"url",cors:true,url:"https://harkerca.infinitecampus.org/campus/resources/portal/roster?_expand=%7BsectionPlacements-%7Bterm%7D%7D"},
@@ -125,20 +126,37 @@ var formCallBack=function(pData){
 }
 
 
-
-var username=localStorage.getItem("scUser");
-var pass=localStorage.getItem("scPass");
-chrome.runtime.sendMessage(
+function getSched(){
+var next = function(){
+var nexttwo=function(){
+	chrome.runtime.sendMessage(
 	 {type:"urlPost",url:"https://www.harker.org/fs/auth/finalsite/callback", formData:{
 		 username:username,
 		 password:pass,
 	 }},
      data => formCallBack(data)
 )
+}
+var pass=chrome.storage.local.get("scPass", function(k){
+	if ("scPass" in k){nexttwo(k.scPass)}else{document.write("Please logout and relogin")}
+});
+
+}
+var username=chrome.storage.local.get("scUser", function(k){
+	if ("scUser" in k){next(k.scUser)}else{document.write("Please logout and relogin")}
+});
+
+}
+
+try {
+	chrome.storage.local.get("schedData", function(k){if ("schedData" in k){
+		schedCB(k.schedData);
+	} else {
+		getSched();
+	}});
+} catch(err){console.log(err)};
 
 var schedCB=function(rawData){
-
-
 
 //Schedule function
 var data=JSON.parse(rawData);
@@ -146,7 +164,7 @@ document.getElementById("loadingsc").remove();
 document.getElementById("loadingtxt").remove();
 var content_div=document.getElementById("schedLoader");
 
-localStorage.setItem("schedData",data);
+chrome.storage.local.set({"schedData":rawData});
 
 var today=new Date();
 var psn={1:"M",2:"T",3:"W",4:"R",5:"F"}
