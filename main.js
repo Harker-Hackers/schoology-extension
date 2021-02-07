@@ -56,6 +56,30 @@ document.getElementById("content-wrapper").innerHTML=`
   animation: spin 2s linear infinite;
 }
 
+.daySched {
+	margin-bottom:20px;
+	background-color:rgb(255,255,255);
+	border: 1px solid rgb(199,199,199);
+}
+
+.dayName {
+	margin-left:10px;
+	margin-top:5px;
+	margin-bottom:5px;
+	font-size:2em;
+}
+
+.courseName {
+	margin-left:10px;
+	margin-top:10px;
+	margin-bottom:10px;
+	font-size:1.25em;
+}
+
+.sTime {
+	margin-left:10px;
+}
+
 /* Safari */
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
@@ -67,7 +91,7 @@ document.getElementById("content-wrapper").innerHTML=`
   100% { transform: rotate(360deg); }
 }
 </style>
-<div id="schedLoader" style="background-color:rgb(255,255,255);border: 1px solid rgb(199,199,199);">
+<div id="schedLoader">
 <p style="margin-left:5px;" id="loadingtxt">Loading...</p>
 <div class="loader" id="loadingsc"></div>
 </div>
@@ -95,6 +119,8 @@ var formCallBack=function(pData){
 	{type:"url",url:"https://harkerca.infinitecampus.org/campus/SSO/harker/SIS/"},
 	data => formCallBack2(data));
 }
+
+
 
 var username=localStorage.getItem("scUser");
 var pass=localStorage.getItem("scPass");
@@ -165,16 +191,24 @@ for (dy in psn){
 	dayDiv.appendChild(tempP);
 	
 	for (i=0;i<crsList.length;i++){
+		dayDiv.innerHTML+="<hr>";
 		var p = document.createElement("p");
+		var b = document.createElement("b");
 		var stspan=document.createElement("span");
 		var stspan2=document.createElement("span");
+		var stspanb=document.createElement("span");
 		stspan.className="sTime";
 		stspan2.className="eTime";
+		stspanb.className="bTime";
 		p.className="courseName";
-		p.textContent=crsList[i].courseName;
+		b.textContent=crsList[i].courseName;
+
 		stspan.textContent=crsList[i].startTime;
 		stspan2.textContent=crsList[i].endTime;
+		stspanb.textContent=" - ";
+		p.appendChild(b);
 		p.appendChild(stspan);
+		p.appendChild(stspanb);
 		p.appendChild(stspan2);
 		dayDiv.appendChild(p);
 	}
