@@ -67,16 +67,16 @@ document.getElementById("content-wrapper").innerHTML=`
   100% { transform: rotate(360deg); }
 }
 </style>
-<div style="background-color:rgb(255,255,255);border: 1px solid rgb(199,199,199);">
-<p style="margin-left:5px;">Loading...</p>
-<div class=loader></div>
+<div id="schedLoader" style="background-color:rgb(255,255,255);border: 1px solid rgb(199,199,199);">
+<p style="margin-left:5px;" id="loadingtxt">Loading...</p>
+<div class="loader" id="loadingsc"></div>
 </div>
 `;
 } catch (err){};
 var formCallback3 = function(){
 	chrome.runtime.sendMessage(
 	{type:"url",cors:true,url:"https://harkerca.infinitecampus.org/campus/resources/portal/roster?_expand=%7BsectionPlacements-%7Bterm%7D%7D"},
-	data => document.write(data))
+	data => schedCB(data))
 }
 var formCallBack2 = function(pData){
 	try{
@@ -105,4 +105,86 @@ chrome.runtime.sendMessage(
 	 }},
      data => formCallBack(data)
 )
+
+var schedCB=function(rawData){
+
+
+
+//Schedule function
+var data=JSON.parse(rawData);
+document.getElementById("loadingsc").remove();
+document.getElementById("loadingtxt").remove();
+var content_div=document.getElementById("schedLoader");
+
+localStorage.setItem("schedData",data);
+
+var today=new Date();
+var psn={1:"M",2:"T",3:"W",4:"R",5:"F"}
+var psNames={"M":"Monday","T":"Tuesday","W":"Wednesday","R":"Thursday","F":"Friday"};
+
+for (dy in psn){
+	
+	var day = psn[dy];
+	var crsList=[];
+	for (crs in data){
+
+		var course = data[crs];
+		var sections=data[crs].sectionPlacements;
+		for (sec=0;sec<sections.length;sec++){
+			
+			var section = sections[sec]
+			if (section.periodScheduleName!==day){continue};
+			var startDate=new Date(section.term.startDate);
+			var endDate=new Date(section.term.endDate);
+			var spTime=section.startTime.split(":");
+			var stime=new Date(2000,0,0,spTime[0],spTime[1],spTime[2],0);
+			var epTime=section.endTime.split(":");
+			var etime=new Date(2000,0,0,epTime[0],epTime[1],epTime[2],0);
+			if (startDate<today && today<endDate){
+				
+				for (crsI=0;crsI<crsList.length;crsI++){
+
+					var spTime2=crsList[crsI].startTime.split(":");
+					var stime2=new Date(2000,0,0,spTime2[0],spTime2[1],spTime2[2],0);
+					if (spTime<spTime2){break};
+
+				}
+				crsList.splice(crsI,0,section);
+
+			}
+
+		}
+
+	}
+	
+	var dayDiv=document.createElement("div");
+	dayDiv.className="daySched";
+	var tempP=document.createElement("p");
+	tempP.className="dayName";
+	tempP.textContent=psNames[day];
+	dayDiv.appendChild(tempP);
+	
+	for (i=0;i<crsList.length;i++){
+		var p = document.createElement("p");
+		var stspan=document.createElement("span");
+		var stspan2=document.createElement("span");
+		stspan.className="sTime";
+		stspan2.className="eTime";
+		p.className="courseName";
+		p.textContent=crsList[i].courseName;
+		stspan.textContent=crsList[i].startTime;
+		stspan2.textContent=crsList[i].endTime;
+		p.appendChild(stspan);
+		p.appendChild(stspan2);
+		dayDiv.appendChild(p);
+	}
+	content_div.appendChild(dayDiv);
+}
+
+
+
+
+
+}
+
 }
