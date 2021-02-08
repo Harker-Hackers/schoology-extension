@@ -11,7 +11,6 @@ if (userMenu==undefined){
 };
 
 for (i=0;i<userMenu.children.length;i++){
-	console.log(userMenu.children[i].id);
     if (userMenu.children[i].id=="infCamp"){
 		return;
 	};
@@ -39,7 +38,7 @@ document.getElementById("s-user-login-form").onsubmit=function(){
 };
 
 //SCHEDULE
-if (location.pathname=="/schedule"){
+if (location.pathname.split("/")[1]=="schedule"){
 try{
 document.getElementById("content-wrapper").innerHTML=`
 <style>
@@ -151,16 +150,19 @@ var username=chrome.storage.local.get("scUser", function(k){
 }
 
 try {
+	if (location.pathname.split("/")[2]=="update"){
+		
+		try{getSched()}catch(err){getSched()}}else{
 	chrome.storage.local.get("schedData", function(k){if ("schedData" in k){
 		try{schedCB(k.schedData)} catch(err){getSched()};
 	} else {
 		getSched();
 	}});
-} catch(err){console.log(err)};
+	}
+} catch(err){};
 
 var schedCB=function(rawData){
 
-console.log(rawData);
 //Schedule function
 var data=JSON.parse(rawData);
 try{
@@ -168,6 +170,16 @@ document.getElementById("loadingsc").remove();
 document.getElementById("loadingtxt").remove();
 } catch(err){};
 var content_div=document.getElementById("schedLoader");
+var settings_div=document.getElementById('center-top');
+
+settings_div.innerHTML=`
+<button style="margin-top:0px;margin-bottom:0px;height:30px;font-size:1.1em;"><span style="margin-left:5px;
+margin-right:5px;" id="updateSched">Update Schedule</span></button>
+
+`
+
+function updateAllScheds(){location.pathname="/schedule/update"}
+document.getElementById("updateSched").onclick=updateAllScheds;
 
 chrome.storage.local.set({"schedData":rawData});
 
