@@ -127,8 +127,10 @@ var formCallBack=function(pData){
 
 
 function getSched(){
-var next = function(){
-var nexttwo=function(){
+var next = function(p){
+var username=p;
+var nexttwo=function(q){
+	var pass=q;
 	chrome.runtime.sendMessage(
 	 {type:"urlPost",url:"https://www.harker.org/fs/auth/finalsite/callback", formData:{
 		 username:username,
@@ -150,7 +152,7 @@ var username=chrome.storage.local.get("scUser", function(k){
 
 try {
 	chrome.storage.local.get("schedData", function(k){if ("schedData" in k){
-		schedCB(k.schedData);
+		try{schedCB(k.schedData)} catch(err){getSched()};
 	} else {
 		getSched();
 	}});
@@ -158,10 +160,13 @@ try {
 
 var schedCB=function(rawData){
 
+console.log(rawData);
 //Schedule function
 var data=JSON.parse(rawData);
+try{
 document.getElementById("loadingsc").remove();
 document.getElementById("loadingtxt").remove();
+} catch(err){};
 var content_div=document.getElementById("schedLoader");
 
 chrome.storage.local.set({"schedData":rawData});
