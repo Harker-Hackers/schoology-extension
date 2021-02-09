@@ -125,7 +125,9 @@ var formCallBack=function(pData){
 }
 
 var rejectHTML=`
-
+<h1>Whoops!</h1>
+<p>Please log out and log back into Schoology. Click the extension in your extension menu for instructions
+for detailed instructions.
 `
 function getSched(){
 var next = function(p){
@@ -275,11 +277,5 @@ for (dy in psn){
 	}
 	content_div.appendChild(dayDiv);
 }
-
-
-
-
-
 }
-
 }
