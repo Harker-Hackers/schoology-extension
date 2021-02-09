@@ -124,7 +124,9 @@ var formCallBack=function(pData){
 	data => formCallBack2(data));
 }
 
+var rejectHTML=`
 
+`
 function getSched(){
 var next = function(p){
 var username=p;
@@ -138,13 +140,14 @@ var nexttwo=function(q){
      data => formCallBack(data)
 )
 }
+
 var pass=chrome.storage.local.get("scPass", function(k){
-	if ("scPass" in k){nexttwo(k.scPass)}else{document.write("Please logout and relogin")}
+	if ("scPass" in k){nexttwo(k.scPass)}else{document.write(rejectHTML)}
 });
 
 }
 var username=chrome.storage.local.get("scUser", function(k){
-	if ("scUser" in k){next(k.scUser)}else{document.write("Please logout and relogin")}
+	if ("scUser" in k){next(k.scUser)}else{document.write(rejectHTML)}
 });
 
 }
