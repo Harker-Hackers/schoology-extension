@@ -1,5 +1,3 @@
-# Schoology Schedule Chrome Extension
-
 Integrate your infinite campus schedule into Schoology. Convinience is key. Navigating between both sites is a pain. Why not have all your school resources on a single page?
 
 You can now view your infnite campus schedule on Schoology!
