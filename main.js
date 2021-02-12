@@ -124,7 +124,7 @@ var formCallBack=function(pData){
 	data => formCallBack2(data));
 }
 
-var rejectHTML=`
+rejectHTML=`
 <h1>Whoops!</h1>
 <p>Please log out and log back into Schoology. Click the extension in your extension menu for instructions
 for detailed instructions.
@@ -278,4 +278,124 @@ for (dy in psn){
 	content_div.appendChild(dayDiv);
 }
 }
+}
+
+
+
+
+
+
+if (location.pathname.includes("/grades/grades")){
+	
+
+	var courseHeaders=document.getElementsByClassName("gradebook-course hierarchical-grading-report show-title interactive sGradesGradebook-processed sGradeHierarchicalReport-processed");
+	
+	var courseBodies=document.getElementsByClassName("gradebook-course-grades");
+	
+	var parseTime = function(k){
+		k=k.split("/");
+		return new Date(parseInt("20"+k[2]),parseInt(k[0])-1,parseInt(k[1]));
+	};
+	
+	for (var i=0;i<courseBodies.length;i++){
+		
+		var crsList=courseBodies[i];
+		var myChart=document.createElement("canvas");
+		myChart.style="height:500px;width:500px;";
+		crsList.appendChild(myChart);
+		var ctx = myChart.getContext('2d');
+		ctx.canvas.width=300;
+		ctx.canvas.height=300;
+		var gradeList=crsList.querySelectorAll(".report-row");
+		var avg={};
+		var weight=0;
+		var bList=[];
+		var weights=[];
+		var cont=true;
+		
+		for (var k=0;k<gradeList.length;k++){
+			var grd=gradeList[k];
+			if (grd.tabIndex==0){
+				if (grd.querySelectorAll(".visually-hidden")[0].textContent!=="Category"){continue};
+				if (grd.dataset.parentId=="0"){continue};
+				try{
+					weights[weight+1]={weight:parseFloat(
+					grd.querySelectorAll(".percentage-contrib")[0]
+					.textContent.replace("%","").replace("(","")
+					.replace(")","")),tot1:0,tot2:0};
+					weight+=1;
+					cont=true;
+				} catch(err){cont=false;};
+			} else {
+				if (!(cont)){continue};
+				try{
+					var frac=parseFloat(grd.querySelectorAll(".awarded-grade")[0].childNodes[0].textContent);
+					var tot=parseFloat(grd.querySelectorAll(".max-grade")[0].textContent.split("/")[1]);
+					var dat=grd.querySelectorAll(".due-date")[0].textContent.replace("Due ","").split(" ")[0];
+					bList.push({grade1:frac, grade2:tot, date:parseTime(dat),wc:weight});
+				} catch(err) {};
+			}
+		};
+		
+		//ordering bList
+		bList.sort(function(a,b){if (a.date.getTime()>b.date.getTime()){return 1} else if (a.date.getTime()<b.date.getTime()) {return -1} else {return 0}})
+		for (var k=0;k<bList.length;k++){
+			var grade=bList[k];
+			var wc = weights[grade.wc];
+			try{
+				wc.tot1+=grade.grade1;
+				wc.tot2+=grade.grade2;
+			} catch(err){continue};
+			var avgT=0.0;
+			for (var l in weights){
+				if (weights[l].tot1==0){
+					var avgW=1;
+				} else {
+
+					var avgW=weights[l].tot1/weights[l].tot2;
+				};
+				var avgW=avgW*weights[l].weight;
+				avgT=avgT+avgW;
+			}
+			var gd="";
+			gd=gd+grade.date.getUTCFullYear()+"/"+String(parseInt(grade.date.getUTCMonth())+1)+"/"+grade.date.getUTCDate();
+			avg[gd]=avgT;
+		}
+		
+		if (avg=={}){continue};
+		
+		var avgList=Object.keys(avg);
+		var dt = Object.values(avg);
+		
+		var myChart = new Chart(ctx, {
+			type: 'line',
+			data: {
+				labels: avgList,
+				datasets: [{
+					label: 'Grade Average',
+					fill: false,
+					borderColor: "#bae755",
+					data: dt,
+					borderWidth: 3
+				}]
+			},
+			options: {
+                responsive: true,
+				maintainAspectRatio: true
+            }
+		});
+		
+	};
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

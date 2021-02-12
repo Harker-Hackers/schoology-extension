@@ -1,9 +1,13 @@
 {
   "name": "Schoology Schedule",
-  "version": "1.0",
-  "description": "Integrate your Infinite Campus schedule into Schoology.",
+  "version": "2.0",
+  "description": "Schoology Schedule + Grade Charts",
   "permissions": ["storage","https://harkerca.infinitecampus.org/*/","https://www.harker.org/*/","https://saml.finalsite.com/*/"],
   "content_scripts": [
+    {
+	  "matches": ["https://schoology.harker.org/grades/*"],
+	  "js":["chart.js"]
+	},
     {
       "matches": ["https://schoology.harker.org/*"],
       "js":["main.js"]
