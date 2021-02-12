@@ -19,14 +19,15 @@ var li=document.createElement("li");
 var ddelem=document.createElement("a")
 ddelem.className="_2JX1Q _3VHSs _1k0yk _3_bfp _1tpub dVlNp _3v0y7 _3eD4l _3ghFm _3LeCL _3lLLU _2gJbx util-text-decoration-none-1n0lI Header-header-button-active-state-3AvBm Header-header-drop-menu-3SaYV Header-header-drop-menu-item-3d3IZ";
 li.id="infCamp";
+li.role="presentation";
 ddelem.textContent="Schedule"
 ddelem.href="/schedule";
-li.appendChild(ddelem);
 userMenu.insertBefore(li, userMenu.childNodes[4]);
+setTimeout(function(k){li.appendChild(k)},30,ddelem);
 };
 
 try{
-but.onclick=k;
+but.onclick=function(){setTimeout(k,50)};
 } catch(err){};
 
 //GETTING PW AND USERNAME
@@ -124,11 +125,7 @@ var formCallBack=function(pData){
 	data => formCallBack2(data));
 }
 
-rejectHTML=`
-<h1>Whoops!</h1>
-<p>Please log out and log back into Schoology. Click the extension in your extension menu for instructions
-for detailed instructions.
-`
+
 function getSched(){
 var next = function(p){
 var username=p;
@@ -144,12 +141,19 @@ var nexttwo=function(q){
 }
 
 var pass=chrome.storage.local.get("scPass", function(k){
-	if ("scPass" in k){nexttwo(k.scPass)}else{document.write(rejectHTML)}
+	if ("scPass" in k){nexttwo(k.scPass)}else{
+		
+		try{document.querySelectorAll(".logout")[0].click()}catch(err){k=document.getElementsByClassName("_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx")[5];k.click();document.querySelectorAll(".logout")[0].click()}
+	}
 });
 
 }
 var username=chrome.storage.local.get("scUser", function(k){
-	if ("scUser" in k){next(k.scUser)}else{document.write(rejectHTML)}
+	if ("scUser" in k){next(k.scUser)}else{
+		
+		
+		try{document.querySelectorAll(".logout")[0].click()}catch(err){k=document.getElementsByClassName("_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx")[5];k.click();document.querySelectorAll(".logout")[0].click()}
+	}
 });
 
 }
