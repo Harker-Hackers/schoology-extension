@@ -19,3 +19,11 @@ You should have the chrome extension installed now! You can pin it for easy-acce
 
 ## Usage
 Click the extension icon. Instructions will pop up. They will probably take thirty seconds to complete.
+
+## Releases
+
+- [Development build](https://github.com/Harker-Hackers/schoology-schedule/archive/master.zip)
+- [Stable releases](https://github.com/Harker-Hackers/schoology-schedule/releases)
+    - [1.1.1](https://github.com/Harker-Hackers/schoology-schedule/releases/tag/1.1.1)
+    - [1.1.0](https://github.com/Harker-Hackers/schoology-schedule/releases/tag/1.1.0)
+    - [1.0.0](https://github.com/Harker-Hackers/schoology-schedule/releases/tag/1.0.0)
