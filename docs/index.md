@@ -4,7 +4,7 @@ You can now view your infnite campus schedule on Schoology!
 
 ## Installation
 
-Download the ZIP from [here](https://github.com/Harker-Hackers/schoology-schedule/archive/1.1.3.zip).
+Download the ZIP from [here](https://github.com/Harker-Hackers/schoology-schedule/archive/1.1.4.zip).
 
 After unzipping the above pacakge, head to [chrome:extensions](chrome://extensions) and turn on developer mode from the top-right of the page.
 
