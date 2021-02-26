@@ -24,6 +24,7 @@ Click the extension icon. Instructions will pop up. They will probably take thir
 
 - [Development build](https://github.com/Harker-Hackers/schoology-schedule/archive/master.zip)
 - [Stable releases](https://github.com/Harker-Hackers/schoology-schedule/releases)
+    - [1.1.4](https://github.com/Harker-Hackers/schoology-schedule/releases/tag/1.1.4)
     - [1.1.3](https://github.com/Harker-Hackers/schoology-schedule/releases/tag/1.1.3)
     - [1.1.2](https://github.com/Harker-Hackers/schoology-schedule/releases/tag/1.1.2)
     - [1.1.1](https://github.com/Harker-Hackers/schoology-schedule/releases/tag/1.1.1)
