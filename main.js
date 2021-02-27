@@ -56,7 +56,7 @@ document.getElementById("content-wrapper").innerHTML=`
   animation: spin 2s linear infinite;
 }
 
-.daySched {
+.daySched{
 	margin-bottom:20px;
 	background-color:rgb(255,255,255);
 	border: 1px solid rgb(199,199,199);
@@ -73,16 +73,55 @@ document.getElementById("content-wrapper").innerHTML=`
 	font-size:2em;
 }
 
-.courseName {
+.courseName{
 	margin-left:10px;
 	margin-top:10px;
 	margin-bottom:10px;
 	font-size:1.25em;
 }
 
+.mnctnt {
+	background-color:rgb(240,240,239);
+	padding:30px;
+}
+
+.wrap {
+	width:374px;
+	height:265px;
+	margin-bottom:20px;
+	padding-top:10px;
+	background-color:rgb(255,255,255);
+	border:none;
+	border-radius:2px;
+	-wekbit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+	-ms-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+	-o-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.mg {
+	font-size:1.25em;
+	margin-left: auto;
+	margin-right:auto;
+	margin-top:10px;
+	text-align:center;
+}
+
+.inpINFL1 {
+	width:200px !important;
+	height:30px !important;
+	margin-left: calc(50% - 100px) !important;
+	padding:0px !important;
+	background-color: rgb(255,255,255) !important;
+}
+
 .sTime {
 	margin-left:10px;
 }
+
 
 /* Safari */
 @-webkit-keyframes spin {
@@ -101,6 +140,44 @@ document.getElementById("content-wrapper").innerHTML=`
 </div>
 `;
 } catch (err){};
+
+//changing infinite campus schedule
+if (location.pathname=="/schedule/inf"){
+	
+	var contentdiv=document.getElementById("schedLoader");
+	contentdiv.innerHTML=`
+	<div id="mnctnt" class="mnctnt">
+	<div class="wrap" id="cntWrap">
+	<p id="userDef" class="mg">Loading...</p>
+	<input id="userInp" class="mg inpINFL1"></input>
+	<p id="passDef" class="mg">Loading...</p>
+	<input id="passInp" class="mg inpINFL1" type="password"></input>
+	<button id="submit" class="mg inpINFL1" style="color: rgb(0,0,0) !important;">Submit</button>
+	</div>
+	</div>
+	`
+	
+	var cont = function(k){
+		console.log(k);
+		if (k=={}){console.log("FAIL")};
+	}
+	try{
+		chrome.storage.local.get("infUser", k => cont(k["infUser"]));
+	} catch (err) {
+		console.log("sc");
+		chrome.storage.local.get("scUser", k => cont(k));
+	}
+	
+	
+} else {
+
+
+
+
+
+
+
+
 
 var formCallback3 = function(){
 	chrome.runtime.sendMessage(
@@ -184,11 +261,15 @@ var settings_div=document.getElementById('center-top');
 settings_div.innerHTML=`
 <button style="margin-top:0px;margin-bottom:0px;height:30px;font-size:1.1em;"><span style="margin-left:5px;
 margin-right:5px;" id="updateSched">Update Schedule</span></button>
+<button style="margin-top:0px;margin-bottom:0px;margin-left:5px;height:30px;font-size:1.1em;"><span style="margin-left:5px;
+margin-right:5px;" id="changeInfPW">Use Different Username and Password</span></button>
 
 `
 
 function updateAllScheds(){location.pathname="/schedule/update"}
 document.getElementById("updateSched").onclick=updateAllScheds;
+function changeInfPW(){location.pathname="/schedule/inf"}
+document.getElementById("changeInfPW").onclick=changeInfPW;
 
 chrome.storage.local.set({"schedData":rawData});
 
@@ -283,6 +364,7 @@ for (dy in psn){
 }
 }
 }
+}
 
 
 
@@ -308,8 +390,8 @@ if (location.pathname.includes("/grades/grades")){
 		myChart.style="height:500px;width:500px;";
 		crsList.appendChild(myChart);
 		var ctx = myChart.getContext('2d');
-		ctx.canvas.width=300;
-		ctx.canvas.height=300;
+		myChart.height=window.innerHeight/3;
+		myChart.width=window.innerWidth/2;
 		var gradeList=crsList.querySelectorAll(".report-row");
 		var avg={};
 		var weight=0;
