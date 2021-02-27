@@ -1,8 +1,8 @@
 ## Features
 
-* Display your infinite campus on Schoology. This makes it so that students don't have to continuously navigate between two sites to view their schedules. Especially useful for new students!
+* Graph your grade trend over time. Students can see how your grades have changed over the course grading period. This can help them understand where their grades have changed, and what they can do to improve.
 
-* Graph your grade trend over time. You can see how your grades have changed over the course grading period. This can help students understand where their grades have changed, and what they can do to improve.
+* Display your infinite campus on Schoology. Students don't have to continuously navigate between two sites to view their schedules. Especially useful for new ones!
 
 
 ## Installation
