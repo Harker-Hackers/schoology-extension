@@ -7,6 +7,8 @@
 
 ## Installation
 
+Video demo [here](https://youtu.be/iQiC8x-_6-M).
+
 Download the ZIP from [here](https://github.com/Harker-Hackers/schoology-schedule/archive/1.1.6.zip).
 
 After unzipping the above pacakge, head to [chrome:extensions](chrome://extensions) and turn on developer mode from the top-right of the page.
