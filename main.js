@@ -83,6 +83,7 @@ document.getElementById("content-wrapper").innerHTML=`
 .mnctnt {
 	background-color:rgb(240,240,239);
 	padding:30px;
+	margin: 0px;
 }
 
 .wrap {
@@ -116,10 +117,26 @@ document.getElementById("content-wrapper").innerHTML=`
 	margin-left: calc(50% - 100px) !important;
 	padding:0px !important;
 	background-color: rgb(255,255,255) !important;
+	border-width: 1px !important;
+	border-color: rgb(0,0,0) !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+	-webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
 }
 
 .sTime {
 	margin-left:10px;
+}
+
+.bINFL1:hover {
+	background-color: rgb(245,245,245);
 }
 
 
@@ -148,25 +165,43 @@ if (location.pathname=="/schedule/inf"){
 	contentdiv.innerHTML=`
 	<div id="mnctnt" class="mnctnt">
 	<div class="wrap" id="cntWrap">
+	<form id="fUP">
+	<p class="mg">Infinite Campus Credentials</p>
 	<p id="userDef" class="mg">Loading...</p>
 	<input id="userInp" class="mg inpINFL1"></input>
 	<p id="passDef" class="mg">Loading...</p>
 	<input id="passInp" class="mg inpINFL1" type="password"></input>
-	<button id="submit" class="mg inpINFL1" style="color: rgb(0,0,0) !important;">Submit</button>
+	<button id="submit" class="mg inpINFL1 bINFL1" style="color: rgb(0,0,0) !important;">Submit</button>
+	</form>
 	</div>
 	</div>
 	`
 	
-	var cont = function(k){
-		console.log(k);
-		if (k=={}){console.log("FAIL")};
+	var cont = function(data,t){
+		console.log(data);
+		if (data=={}||data==undefined){if(t==1){chrome.storage.local.get("scUser", data => cont(data["scUser"],0))}else{
+			try{document.querySelectorAll(".logout")[0].click()}catch(err){k=document.getElementsByClassName("_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx")[5];k.click();document.querySelectorAll(".logout")[0].click()}
+		}};
+		document.getElementById("userDef").textContent=String("Username: "+data);
 	}
-	try{
-		chrome.storage.local.get("infUser", k => cont(k["infUser"]));
-	} catch (err) {
-		console.log("sc");
-		chrome.storage.local.get("scUser", k => cont(k));
+	chrome.storage.local.get("infUser", data => cont(data["infUser"],1));
+	var cont2 = function(data,t){
+		console.log(data);
+		if (data=={}||data==undefined){if(t==1){chrome.storage.local.get("scPass", data => cont2(data["scPass"],0))}else{
+			try{document.querySelectorAll(".logout")[0].click()}catch(err){k=document.getElementsByClassName("_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx")[5];k.click();document.querySelectorAll(".logout")[0].click()}
+		}};
+		document.getElementById("passDef").textContent=String("Password: "+data);
 	}
+	chrome.storage.local.get("infPass", data => cont2(data["infPass"],1));
+	
+	var submitForm=function(){
+		chrome.storage.local.set({"infUser":document.getElementById("userInp").value});
+		chrome.storage.local.set({"infPass":document.getElementById("passInp").value});
+	}
+	
+	
+	document.getElementById("fUP").onsubmit=submitForm;
+	
 	
 	
 } else {
@@ -206,6 +241,7 @@ var formCallBack=function(pData){
 function getSched(){
 var next = function(p){
 var username=p;
+console.log(p);
 var nexttwo=function(q){
 	var pass=q;
 	chrome.runtime.sendMessage(
@@ -216,23 +252,27 @@ var nexttwo=function(q){
      data => formCallBack(data)
 )
 }
-
+var pass=chrome.storage.local.get("infPass", function(k){
+	if ("infPass" in k){nexttwo(k.infPass)}else{
 var pass=chrome.storage.local.get("scPass", function(k){
 	if ("scPass" in k){nexttwo(k.scPass)}else{
 		
 		try{document.querySelectorAll(".logout")[0].click()}catch(err){k=document.getElementsByClassName("_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx")[5];k.click();document.querySelectorAll(".logout")[0].click()}
 	}
 });
+}});
 
 }
-var username=chrome.storage.local.get("scUser", function(k){
+chrome.storage.local.get("infUser", function(k){console.log(k);
+	if ("infUser" in k){next(k.infUser)}else{
+chrome.storage.local.get("scUser", function(k){
 	if ("scUser" in k){next(k.scUser)}else{
 		
 		
 		try{document.querySelectorAll(".logout")[0].click()}catch(err){k=document.getElementsByClassName("_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx")[5];k.click();document.querySelectorAll(".logout")[0].click()}
 	}
 });
-
+}})
 }
 
 try {
