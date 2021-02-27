@@ -1,5 +1,5 @@
 {
-  "name": "Schoology Grades Trend",
+  "name": "Schoology Grades Trend Visualizer",
   "version": "1.1.5",
   "description": "Schoology Schedule + Grade Charts",
   "permissions": ["storage","https://harkerca.infinitecampus.org/*/","https://www.harker.org/*/","https://saml.finalsite.com/*/"],

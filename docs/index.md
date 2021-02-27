@@ -7,7 +7,7 @@
 
 ## Installation
 
-Download the ZIP from [here](https://github.com/Harker-Hackers/schoology-schedule/archive/1.1.5.zip).
+Download the ZIP from [here](https://github.com/Harker-Hackers/schoology-schedule/archive/1.1.6.zip).
 
 After unzipping the above pacakge, head to [chrome:extensions](chrome://extensions) and turn on developer mode from the top-right of the page.
 
@@ -27,6 +27,7 @@ Click the extension icon. Instructions will pop up. They will probably take thir
 
 - [Development build](https://github.com/Harker-Hackers/schoology-schedule/archive/master.zip)
 - [Stable releases](https://github.com/Harker-Hackers/schoology-schedule/releases)
+    - [1.1.6](https://github.com/Harker-Hackers/schoology-schedule/archive/1.1.6.zip)
     - [1.1.5](https://github.com/Harker-Hackers/schoology-schedule/archive/1.1.5.zip)
     - [1.1.4](https://github.com/Harker-Hackers/schoology-schedule/releases/tag/1.1.4)
     - [1.1.3](https://github.com/Harker-Hackers/schoology-schedule/releases/tag/1.1.3)
