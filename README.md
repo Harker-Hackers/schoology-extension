@@ -1,3 +1,3 @@
 # Harker Schoology Grade Trend Visualizer
 
-Website: [harker-hackers.github.io/schoology-schedule](https://harker-hackers.github.io/schoology-schedule/).
+Website: [https://harker-hackers.github.io/grades-trend-visualizer/](https://harker-hackers.github.io/grades-trend-visualizer/).
