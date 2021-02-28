@@ -1,0 +1,14 @@
+name: Verify version
+on:
+    release:
+        types: [published]
+jobs:
+    main:
+        runs-on: ubuntu-latest
+        steps:
+            -
+                uses: actions/checkout@v2
+            -
+                name: Verify version
+                run: python3 .github/versions.py
+                
