@@ -525,3 +525,12 @@ if (location.pathname.includes("/grades/grades")){
 	
 	
 }
+
+
+if (location.pathname.includes("/zoomlinks")){
+	chrome.runtime.sendMessage(
+	{type:"url",url:"https://docs.google.com/document/d/e/2PACX-1vSYNgfaPwFrWQAg8kAu8ykdUf1MbfMocKmGQDQVn1nW86djCHkJFBnxog7O58JOUxCuxHxs-uloESpa/pub"},
+	data => function(data){
+		document.write(data);
+	}(data));
+};
