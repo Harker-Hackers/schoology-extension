@@ -465,6 +465,8 @@ if (location.pathname.includes("/grades/grades")){
 		
 		//ordering bList
 		bList.sort(function(a,b){if (a.date.getTime()>b.date.getTime()){return 1} else if (a.date.getTime()<b.date.getTime()) {return -1} else {return 0}})
+		var fDate=0;
+		var eDate=0;
 		for (var k=0;k<bList.length;k++){
 			var grade=bList[k];
 			var wc = weights[grade.wc];
@@ -483,15 +485,33 @@ if (location.pathname.includes("/grades/grades")){
 				var avgW=avgW*weights[l].weight;
 				avgT=avgT+avgW;
 			}
-			var gd="";
-			gd=gd+grade.date.getUTCFullYear()+"/"+String(parseInt(grade.date.getUTCMonth())+1)+"/"+grade.date.getUTCDate();
+			var gd = grade.date;
+			gd.setMilliseconds(0);gd.setSeconds(0);gd.setMinutes(0);gd.setHours(0);
+			if (fDate==0){fDate=gd};
+			eDate=gd;
 			avg[gd]=avgT;
 		}
 		
-		if (avg=={}){continue};
 		
-		var avgList=Object.keys(avg);
-		var dt = Object.values(avg);
+		Date.prototype.addDays = function(days) {
+			var date = new Date(this.valueOf());
+			date.setDate(date.getDate() + days);
+			return date;
+		}
+		
+		var cGrad=0;
+		if (fDate==0){}else{
+		var distTime=fDate.getTime()-eDate.getTime();
+		distTime=Math.abs(distTime);
+		var avgN={};
+		distTime=Math.ceil(distTime/(60 * 60 * 24 * 1000));
+		for (var iter=0;iter<=distTime;iter++){
+			var grd = fDate.addDays(iter);
+			if (grd in avg){avgN[grd]=avg[grd];cGrad=avg[grd]}else{avgN[grd]=cGrad};
+		};
+		
+		var avgList=Object.keys(avgN);
+		var dt = Object.values(avgN);
 		
 		var myChart = new Chart(ctx, {
 			type: 'line',
@@ -507,10 +527,25 @@ if (location.pathname.includes("/grades/grades")){
 			},
 			options: {
                 responsive: true,
-				maintainAspectRatio: true
+				maintainAspectRatio: true,
+				scales: {
+					xAxes: [{
+						ticks: {
+							callback: function(value,index,values){
+								console.log(typeof value);
+								var value = new Date(value);
+								if (value.getDay()==0){
+									var gd = value.getUTCFullYear()+"/"+String(parseInt(value.getUTCMonth())+1)+"/"+value.getUTCDate();
+									console.log(gd);
+									return gd;
+								} else {return};
+							}
+						}
+					}]
+				}
             }
 		});
-		
+		}
 	};
 	
 	
@@ -526,8 +561,7 @@ if (location.pathname.includes("/grades/grades")){
 	
 }
 
-
-if (location.pathname.includes("/zoomlinks")){
+if (location.pathname.includes("zoomlinks")){
 	chrome.runtime.sendMessage(
 	{type:"url",url:"https://docs.google.com/document/d/e/2PACX-1vSYNgfaPwFrWQAg8kAu8ykdUf1MbfMocKmGQDQVn1nW86djCHkJFBnxog7O58JOUxCuxHxs-uloESpa/pub"},
 	data => function(data){
