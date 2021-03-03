@@ -467,6 +467,7 @@ if (location.pathname.includes("/grades/grades")){
 		bList.sort(function(a,b){if (a.date.getTime()>b.date.getTime()){return 1} else if (a.date.getTime()<b.date.getTime()) {return -1} else {return 0}})
 		var fDate=0;
 		var eDate=0;
+		console.log("NEW SUBJECT");
 		for (var k=0;k<bList.length;k++){
 			var grade=bList[k];
 			var wc = weights[grade.wc];
@@ -474,6 +475,7 @@ if (location.pathname.includes("/grades/grades")){
 				wc.tot1+=grade.grade1;
 				wc.tot2+=grade.grade2;
 			} catch(err){continue};
+			console.log("Grade: "+grade.grade1/grade.grade2+"   \nDate: "+grade.date);
 			var avgT=0.0;
 			for (var l in weights){
 				if (weights[l].tot1==0){
