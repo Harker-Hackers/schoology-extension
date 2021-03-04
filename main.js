@@ -421,7 +421,6 @@ if (location.pathname.includes("/grades/grades")){
 	};
 	
 	for (var i=0;i<courseBodies.length;i++){
-		
 		var crsList=courseBodies[i];
 		var myChart=document.createElement("canvas");
 		myChart.style="height:500px;width:500px;";
@@ -512,6 +511,8 @@ if (location.pathname.includes("/grades/grades")){
 		var avgList=Object.keys(avgN);
 		var dt = Object.values(avgN);
 		
+		var prLD=[];
+		
 		var myChart = new Chart(ctx, {
 			type: 'line',
 			data: {
@@ -521,7 +522,9 @@ if (location.pathname.includes("/grades/grades")){
 					fill: false,
 					borderColor: "#bae755",
 					data: dt,
-					borderWidth: 3
+					borderWidth: 3,
+					pointRadius: prLD,
+					pointHitRadius:3
 				}]
 			},
 			options: {
@@ -539,9 +542,21 @@ if (location.pathname.includes("/grades/grades")){
 							}
 						}
 					}]
-				}
+				},
             }
 		});
+		
+		var pastGrade=0;
+		for (var iter = 0; iter < myChart.data.datasets[0].data.length; iter++) {
+			var iterData=myChart.data.datasets[0].data[iter];
+			if (iterData==pastGrade){
+				prLD.push(0);
+			} else {
+				prLD.push(2);
+				pastGrade=iterData;
+			}
+		}
+		
 		}
 	};
 	
