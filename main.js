@@ -178,7 +178,6 @@ if (location.pathname=="/schedule/inf"){
 	`
 	
 	var cont = function(data,t){
-		console.log(data);
 		if (data=={}||data==undefined){if(t==1){chrome.storage.local.get("scUser", data => cont(data["scUser"],0))}else{
 			try{document.querySelectorAll(".logout")[0].click()}catch(err){k=document.getElementsByClassName("_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx")[5];k.click();document.querySelectorAll(".logout")[0].click()}
 		}};
@@ -186,7 +185,6 @@ if (location.pathname=="/schedule/inf"){
 	}
 	chrome.storage.local.get("infUser", data => cont(data["infUser"],1));
 	var cont2 = function(data,t){
-		console.log(data);
 		if (data=={}||data==undefined){if(t==1){chrome.storage.local.get("scPass", data => cont2(data["scPass"],0))}else{
 			try{document.querySelectorAll(".logout")[0].click()}catch(err){k=document.getElementsByClassName("_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx")[5];k.click();document.querySelectorAll(".logout")[0].click()}
 		}};
@@ -241,7 +239,6 @@ var formCallBack=function(pData){
 function getSched(){
 var next = function(p){
 var username=p;
-console.log(p);
 var nexttwo=function(q){
 	var pass=q;
 	chrome.runtime.sendMessage(
@@ -263,7 +260,7 @@ var pass=chrome.storage.local.get("scPass", function(k){
 }});
 
 }
-chrome.storage.local.get("infUser", function(k){console.log(k);
+chrome.storage.local.get("infUser", function(k){;
 	if ("infUser" in k){next(k.infUser)}else{
 chrome.storage.local.get("scUser", function(k){
 	if ("scUser" in k){next(k.scUser)}else{
@@ -534,11 +531,9 @@ if (location.pathname.includes("/grades/grades")){
 					xAxes: [{
 						ticks: {
 							callback: function(value,index,values){
-								console.log(typeof value);
 								var value = new Date(value);
 								if (value.getDay()==0){
 									var gd = value.getUTCFullYear()+"/"+String(parseInt(value.getUTCMonth())+1)+"/"+value.getUTCDate();
-									console.log(gd);
 									return gd;
 								} else {return};
 							}
