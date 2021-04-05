@@ -1,7 +1,7 @@
 {
-  "name": "Schoology Grades Trend Visualizer",
-  "version": "1.3.0",
-  "description": "Schoology Schedule + Grade Charts",
+  "name": "Harker Hackers Schoology Extension",
+  "version": "1.0",
+  "description": "Schoology Schedule",
   "permissions": ["storage","https://harkerca.infinitecampus.org/*/","https://www.harker.org/*/","https://saml.finalsite.com/*/"],
   "content_scripts": [
     {

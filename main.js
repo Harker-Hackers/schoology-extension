@@ -407,7 +407,7 @@ for (dy in psn){
 
 
 
-
+//Grades are deactivated
 if (location.pathname.includes("/grades/grades")){
 	
 
@@ -424,7 +424,7 @@ if (location.pathname.includes("/grades/grades")){
 		var crsList=courseBodies[i];
 		var myChart=document.createElement("canvas");
 		myChart.style="height:500px;width:500px;";
-		crsList.appendChild(myChart);
+		//crsList.appendChild(myChart);
 		var ctx = myChart.getContext('2d');
 		myChart.height=window.innerHeight/3;
 		myChart.width=window.innerWidth/2;
