@@ -404,7 +404,85 @@ for (dy in psn){
 }
 
 
+function overdueAssignmentFixer(context,mClass){
+	mClass=mClass.replaceAll(" :",":")
+  $('.upcoming-events-wrapper:not(.sEventUpcoming-processed)' , context ).addClass('sEventUpcoming-processed').each(function(){
 
+    $(this).on('click', 'a.expander', function(e){
+      var subeventObj = $( ".events-hidden" , $(this).closest('.upcoming-event'));
+      if(subeventObj.is(":hidden"))
+        subeventObj.show();
+      else
+        subeventObj.hide();
+
+      e.preventDefault();
+    });
+  });
+
+  // Filters out past events (or not yet overdue submissions) and excess future events.
+  // This allows HTTP caching to be used while still displaying the correct upcoming events.
+  $('.upcoming-list .date-header:not(.sEventUpcoming-processed)', context)
+    .addClass('sEventUpcoming-processed')
+    .each(function () {
+      let isOverdueSubmissionsList = context.attr !== undefined && context.attr('id') === 'overdue-submissions';
+
+      // Per requirements of SGY-10439:
+      // The events are grouped by days - the last day returned should contain all of the events of that day
+      // even if this exceeds the number of events that should normally be returned.
+      const maxEvents = 10;
+      if (!isOverdueSubmissionsList && $('.upcoming-event:not(.hidden):not(.nested)', context).length >= maxEvents) {
+        return;
+      }
+
+      let now = convertJsTimestampToPhp(Date.now());
+      let dateHeader = $(this);
+      let event = dateHeader.next('.upcoming-event');
+      while (event.length) {
+        let start = event.data('start');
+        let locked = event.data('locked');
+		let assignmentClass=event[0].childNodes[0].childNodes[0].getAttribute("aria-label").replaceAll(" :",":")
+
+		if (assignmentClass==mClass){
+        if (isOverdueSubmissionsList) {
+          if ((start === '' || start <= now) && (!locked || now < locked)) {
+            dateHeader.removeClass('hidden');
+            event.removeClass('hidden');
+          }
+        } else {
+          if (start === '' || start > now) {
+            dateHeader.removeClass('hidden');
+            event.removeClass('hidden');
+          }
+        }
+		}
+        event = event.next('.upcoming-event');
+      }
+    });
+
+  function convertJsTimestampToPhp(timestamp) {
+    return timestamp / 1000;
+  }
+}
+
+function getOverdueAssignments(){
+	chrome.runtime.sendMessage(
+			{type:"url",url:"https://schoology.harker.org/home/overdue_submissions_ajax"},
+			data => function(data){
+				data = JSON.parse(data).html;
+				var cDoc=document.getElementById("right-column-inner")
+				cDoc.innerHTML=`<div id="overdue-submissions" class="overdue-submissions overdue-submissions-wrapper"><div class="overdue-submissions-list"></div></div>`+cDoc.innerHTML
+				document.getElementById("overdue-submissions").innerHTML=data;
+				overdueAssignmentFixer($("#overdue-submissions"), document.querySelectorAll(".page-title ")[0].childNodes[0].textContent)
+			}(data));
+
+			
+}
+if ((location.pathname!="/home") && (location.pathname!="/")){
+	var cont=true;
+	document.getElementById("right-column-inner").childNodes.forEach(data=>function(data){
+		if (data.id=="course-events" && cont==true){getOverdueAssignments();cont=false}
+	}(data))
+}
 
 
 //Grades are deactivated
@@ -580,3 +658,4 @@ if (location.pathname.includes("zoomlinks")){
 		document.write(data);
 	}(data));
 };
+
