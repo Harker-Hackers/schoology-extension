@@ -477,11 +477,13 @@ function getOverdueAssignments(){
 
 			
 }
-if ((location.pathname!="/home") && (location.pathname!="/")){
+if ((location.pathname!="/home") && (location.pathname!="/")){\
+	try{
 	var cont=true;
 	document.getElementById("right-column-inner").childNodes.forEach(data=>function(data){
 		if (data.id=="course-events" && cont==true){getOverdueAssignments();cont=false}
 	}(data))
+	} catch(err){}
 }
 
 
