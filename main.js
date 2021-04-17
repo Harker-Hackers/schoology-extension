@@ -61,18 +61,11 @@ document.getElementById("s-user-login-form").onsubmit=function(){
 
 //SCHEDULE
 if (location.pathname.split("/")[1]=="zoom_links"){
-	document.write(`
-<head>
-	<title>Harker | Zoom Links</title>
-	<link rel="shortcut icon" href="/sites/all/themes/schoology_theme/favicon.ico" type="image/x-icon">
-</head>
-<body>
-	<center>
-		<iframe src="https://docs.google.com/document/d/e/2PACX-1vSYNgfaPwFrWQAg8kAu8ykdUf1MbfMocKmGQDQVn1nW86djCHkJFBnxog7O58JOUxCuxHxs-uloESpa/pub" height=700 width=100%>
-	</center>
-</iframe>
-</body>
-	`)
+	document.getElementById("main-content-wrapper").innerHTML=`
+<center>
+	<iframe src="https://docs.google.com/document/d/e/2PACX-1vSYNgfaPwFrWQAg8kAu8ykdUf1MbfMocKmGQDQVn1nW86djCHkJFBnxog7O58JOUxCuxHxs-uloESpa/pub" height=700 width=100%></iframe>
+</center>
+	`
 }
 
 if (location.pathname.split("/")[1]=="schedule"){
