@@ -3,27 +3,48 @@ var xhr = new XMLHttpRequest();
 var but=document.getElementsByClassName("_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw util-height-six-3PHnk Header-header-button-active-state-3AvBm Header-header-button-1EE8Y Z_KgC fjQuT uQOmx")[0];
 
 function k(){
-var userMenu=document.getElementsByClassName("_2T2dA Header-header-drop-menu-3SaYV util-min-width-twenty-two-2a0Y- util-max-width-twenty-six-1OJjn _38KgL _35hYo _2mWUT _2ue1O les2- util-box-shadow-dropdown-2Bl9b util-margin-top-negative-point-four-3GRLY _3Xw3k _2trRU j17AQ S42JQ VSOiH _3RmDr fjQuT uQOmx")[0];
+	console.log("get a life")
+	var userMenu=document.getElementsByClassName("_2T2dA Header-header-drop-menu-3SaYV util-min-width-twenty-two-2a0Y- util-max-width-twenty-six-1OJjn _38KgL _35hYo _2mWUT _2ue1O les2- util-box-shadow-dropdown-2Bl9b util-margin-top-negative-point-four-3GRLY _3Xw3k _2trRU j17AQ S42JQ VSOiH _3RmDr fjQuT uQOmx")[0];
 
-if (userMenu==undefined){
-	setTimeout(k,5);
-	return;
-};
-
-for (i=0;i<userMenu.children.length;i++){
-    if (userMenu.children[i].id=="infCamp"){
+	if (userMenu==undefined){
+		setTimeout(k,5);
 		return;
 	};
-}
-var li=document.createElement("li");
-var ddelem=document.createElement("a")
-ddelem.className="_2JX1Q _3VHSs _1k0yk _3_bfp _1tpub dVlNp _3v0y7 _3eD4l _3ghFm _3LeCL _3lLLU _2gJbx util-text-decoration-none-1n0lI Header-header-button-active-state-3AvBm Header-header-drop-menu-3SaYV Header-header-drop-menu-item-3d3IZ";
-li.id="infCamp";
-li.role="presentation";
-ddelem.textContent="Schedule"
-ddelem.href="/schedule";
-userMenu.insertBefore(li, userMenu.childNodes[4]);
-setTimeout(function(k){li.appendChild(k)},30,ddelem);
+
+	for (i=0;i<userMenu.children.length;i++){
+		if (userMenu.children[i].id=="infCamp"){
+			return;
+		};
+	}
+
+	// create schedule element
+	var li=document.createElement("li");
+	var ddelem=document.createElement("a")
+	ddelem.className="_2JX1Q _3VHSs _1k0yk _3_bfp _1tpub dVlNp _3v0y7 _3eD4l _3ghFm _3LeCL _3lLLU _2gJbx util-text-decoration-none-1n0lI Header-header-button-active-state-3AvBm Header-header-drop-menu-3SaYV Header-header-drop-menu-item-3d3IZ";
+	li.id="infCamp";
+	li.role="presentation";
+	ddelem.textContent="Schedule"
+	ddelem.href="/schedule";
+	userMenu.insertBefore(li, userMenu.childNodes[4]);
+
+	// create zoom links element
+	var zoom_li = document.createElement("li");
+	var zoom_ddelem = document.createElement("a")
+	zoom_ddelem.className = "_2JX1Q _3VHSs _1k0yk _3_bfp _1tpub dVlNp _3v0y7 _3eD4l _3ghFm _3LeCL _3lLLU _2gJbx util-text-decoration-none-1n0lI Header-header-button-active-state-3AvBm Header-header-drop-menu-3SaYV Header-header-drop-menu-item-3d3IZ";
+	zoom_li.id = "zoomLinks";
+	zoom_li.role = "presentation";
+	zoom_ddelem.textContent = "Zoom Links"
+	zoom_ddelem.href = "/zoom_links";
+	userMenu.insertBefore(zoom_li, userMenu.childNodes[5]);
+
+	setTimeout(
+		function(elem1, elem2){
+			li.appendChild(elem1)
+			zoom_li.appendChild(elem2)
+		},
+		30,
+		ddelem, zoom_ddelem
+	)
 };
 
 try{
@@ -39,6 +60,21 @@ document.getElementById("s-user-login-form").onsubmit=function(){
 };
 
 //SCHEDULE
+if (location.pathname.split("/")[1]=="zoom_links"){
+	document.write(`
+<head>
+	<title>Harker | Zoom Links</title>
+	<link rel="shortcut icon" href="/sites/all/themes/schoology_theme/favicon.ico" type="image/x-icon">
+</head>
+<body>
+	<center>
+		<iframe src="https://docs.google.com/document/d/e/2PACX-1vSYNgfaPwFrWQAg8kAu8ykdUf1MbfMocKmGQDQVn1nW86djCHkJFBnxog7O58JOUxCuxHxs-uloESpa/pub" height=700 width=800>
+	</center>
+</iframe>
+</body>
+	`)
+}
+
 if (location.pathname.split("/")[1]=="schedule"){
 try{
 document.getElementById("content-wrapper").innerHTML=`
