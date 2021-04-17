@@ -68,7 +68,7 @@ if (location.pathname.split("/")[1]=="zoom_links"){
 </head>
 <body>
 	<center>
-		<iframe src="https://docs.google.com/document/d/e/2PACX-1vSYNgfaPwFrWQAg8kAu8ykdUf1MbfMocKmGQDQVn1nW86djCHkJFBnxog7O58JOUxCuxHxs-uloESpa/pub" height=700 width=800>
+		<iframe src="https://docs.google.com/document/d/e/2PACX-1vSYNgfaPwFrWQAg8kAu8ykdUf1MbfMocKmGQDQVn1nW86djCHkJFBnxog7O58JOUxCuxHxs-uloESpa/pub" height=700 width=100%>
 	</center>
 </iframe>
 </body>
