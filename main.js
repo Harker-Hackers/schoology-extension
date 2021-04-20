@@ -58,7 +58,7 @@ document.getElementById("s-user-login-form").onsubmit=function(){
 }
 };
 
-//SCHEDULE
+
 if (location.pathname.split("/")[1]=="zoom_links"){
 	document.getElementById("main-content-wrapper").innerHTML=`
 <center>
@@ -66,7 +66,7 @@ if (location.pathname.split("/")[1]=="zoom_links"){
 </center>
 	`
 }
-
+//SCHEDULE
 if (location.pathname.split("/")[1]=="schedule"){
 try{
 document.getElementById("content-wrapper").innerHTML=`
@@ -680,12 +680,3 @@ if (location.pathname.includes("/grades/grades")){
 	
 	
 }
-
-if (location.pathname.includes("zoomlinks")){
-	chrome.runtime.sendMessage(
-	{type:"url",url:"https://docs.google.com/document/d/e/2PACX-1vSYNgfaPwFrWQAg8kAu8ykdUf1MbfMocKmGQDQVn1nW86djCHkJFBnxog7O58JOUxCuxHxs-uloESpa/pub"},
-	data => function(data){
-		document.write(data);
-	}(data));
-};
-
