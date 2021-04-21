@@ -9,14 +9,10 @@ jobs:
     main:
         runs-on: ubuntu-latest
         steps:
-            -
-                uses: actions/checkout@v2
-            -
-                name: Install dependencies
-                run: sudo apt-get install jq
-            -
-                name: Check grammar
-                run: echo "$(cat manifest.json)" | jq empty
-            -
-                name: Check if files in browser actions exist
-                run: python3 .github/file-exists.py
+            - uses: actions/checkout@v2
+            - name: Install dependencies
+              run: sudo apt-get install jq
+            - name: Check grammar
+              run: echo "$(cat manifest.json)" | jq empty
+            - name: Check if files in browser actions exist
+              run: python3 .github/file-exists.py
