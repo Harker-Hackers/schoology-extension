@@ -1,0 +1,25 @@
+{
+    "name": "schoology-extension",
+    "version": "1.0.0",
+    "description": "Website: [https://harker-hackers.github.io/schoology-extension](https://harker-hackers.github.io/schoology-extension).",
+    "main": "main.js",
+    "directories": {
+        "doc": "docs"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Harker-Hackers/schoology-extension.git"
+    },
+    "author": "Harker Hackers",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Harker-Hackers/schoology-extension/issues"
+    },
+    "homepage": "https://github.com/Harker-Hackers/schoology-extension#readme",
+    "devDependencies": {
+        "prettier": "2.2.1"
+    }
+}
