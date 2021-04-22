@@ -8,7 +8,6 @@ if (
 // Register receiver for reponse headers
 chrome.webRequest.onHeadersReceived.addListener(
     (data) => {
-        console.log(data);
         var url = data.url;
         var cont = false;
         var cont2 = false;
@@ -19,20 +18,18 @@ chrome.webRequest.onHeadersReceived.addListener(
             }
             if (
                 rH.name.toLowerCase() == "content-type" &&
-                rH.value == "application/pdf"
+                (rH.value == "application/pdf" || rH.value=="application/octet-stream")
             ) {
                 cont2 = i + 1;
             }
         }
-		/*(url.match(`https:\/\/schoology.harker.org\/attachment\/(.+)\/source\/(.+)`)!=null) &&*/
         if (cont && cont2) {
             cont = cont - 1;
-            /*data.responseHeaders[cont].value=data.responseHeaders[cont].value.replace("text/html","application/pdf")
-			console.log(data.responseHeaders[cont].value)*/
+			cont2=cont2-1;
             data.responseHeaders[cont].value = data.responseHeaders[
                 cont
             ].value.replace("attachment", "inline");
-            console.log(data);
+			data.responseHeaders[cont2].value="application/pdf";
             return { responseHeaders: data.responseHeaders };
         }
     },
