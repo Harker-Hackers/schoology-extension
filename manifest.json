@@ -10,7 +10,8 @@
         "*://*.schoology.com/*",
         "https://harkerca.infinitecampus.org/*/",
         "https://www.harker.org/*/",
-        "https://saml.finalsite.com/*/"
+        "https://saml.finalsite.com/*/",
+        "*://resources.harker.org/download/*"
     ],
     "content_scripts": [
         {
