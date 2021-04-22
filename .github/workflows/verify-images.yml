@@ -10,14 +10,10 @@ jobs:
     main:
         runs-on: ubuntu-latest
         steps:
-            -
-                uses: actions/checkout@v2
-            -
-                name: Install dependencies
-                run: sudo apt install pngcheck
-            -
-                name: Check root images
-                run: pngcheck images/*
-            -
-                name: Check docs images
-                run: pngcheck docs/images/*
+            - uses: actions/checkout@v2
+            - name: Install dependencies
+              run: sudo apt install pngcheck
+            - name: Check root images
+              run: pngcheck images/*
+            - name: Check docs images
+              run: pngcheck docs/images/*
