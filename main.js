@@ -7,7 +7,7 @@ top_bar_icons = document.getElementsByClassName(
 new_icon = document.createElement("li");
 new_icon.setAttribute("class", "_24avl _3Rh90 _349XD");
 new_icon.innerHTML = `
-<a href="lunch">
+<a href="https://schoology.harker.org/lunch">
     <button aria-label="Lunch" class="_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw util-height-six-3PHnk util-fill-current-color-2w3fJ Header-header-button-active-state-3AvBm Header-header-button-1EE8Y fjQuT uQOmx" aria-expanded="false" aria-haspopup="true">
         <img src="https://docs.google.com/drawings/d/e/2PACX-1vTMzmSuOBlwCS_Q8NsLf6LvXZLasbqIA0OvvZXpC114YWfTsJT_MBAhfrV6codBNhX6PGXySW_CHeix/pub?w=673&h=611" legnth=25 width=25>
     </button>
