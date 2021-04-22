@@ -74,11 +74,13 @@ if (location.pathname.includes("/login")) {
 // zoom links
 if (location.pathname.split("/")[1] == "zoom_links") {
     document.getElementById("main-content-wrapper").innerHTML = `
-<center>
-	<iframe src="https://docs.google.com/document/d/e/2PACX-1vSYNgfaPwFrWQAg8kAu8ykdUf1MbfMocKmGQDQVn1nW86djCHkJFBnxog7O58JOUxCuxHxs-uloESpa/pub" height=700 width=100%></iframe>
-</center>
+    <br>
+    <center>
+        <iframe src="https://docs.google.com/document/d/e/2PACX-1vSYNgfaPwFrWQAg8kAu8ykdUf1MbfMocKmGQDQVn1nW86djCHkJFBnxog7O58JOUxCuxHxs-uloESpa/pub" height=700 width=100% style="border: 1px solid black"></iframe>
+    </center>
 	`;
 }
+
 //SCHEDULE
 if (location.pathname.split("/")[1] == "schedule") {
     try {

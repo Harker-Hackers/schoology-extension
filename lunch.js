@@ -11,6 +11,13 @@ chrome.runtime.sendMessage(
     console.log(pdf_link)
 
     document.getElementById("main-content-wrapper").innerHTML = `
-        <iframe src="${pdf_link}" type="application/pdf"></iframe>`
+    <br>
+    <center>
+        <iframe src="${pdf_link}" height=700 width=100% style="border: 1px solid black"></iframe>
+    </center>
+    `
 	}
+
+    
 );
+
