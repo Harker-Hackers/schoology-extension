@@ -24,9 +24,7 @@ chrome.webRequest.onHeadersReceived.addListener(
                 cont2 = i + 1;
             }
         }
-        console.log(
-            "Kant: " + cont2
-        ); /*(url.match(`https:\/\/schoology.harker.org\/attachment\/(.+)\/source\/(.+)`)!=null) &&*/
+		/*(url.match(`https:\/\/schoology.harker.org\/attachment\/(.+)\/source\/(.+)`)!=null) &&*/
         if (cont && cont2) {
             cont = cont - 1;
             /*data.responseHeaders[cont].value=data.responseHeaders[cont].value.replace("text/html","application/pdf")
@@ -39,8 +37,8 @@ chrome.webRequest.onHeadersReceived.addListener(
         }
     },
     {
-        types: ["main_frame", "sub_frame"],
-        urls: ['*://files-cdn.schoology.com/*', '*://schoology.harker.org/lunch']
+        types: ["main_frame", "sub_frame", "other"],
+        urls: ['*://files-cdn.schoology.com/*', '*://resources.harker.org/download/*']
     },
     ["responseHeaders", "blocking", "extraHeaders"]
 );

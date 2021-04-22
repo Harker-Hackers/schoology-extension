@@ -3,7 +3,9 @@ fetch('https://resources.harker.org/?wpdmpro=middle-school-lunch-menu').then(r =
     end = result.indexOf(">Download</a>&nbsp;") - 19
         
     pdf_link = result.slice(start, end)
+    console.log(pdf_link)
+
     document.getElementById("main-content-wrapper").innerHTML = `<center>
-        <iframe src="${pdf_link}" height=700 width=100%></iframe>
+        <iframe src="${pdf_link}" type="application/pdf"</iframe>
         </center>`
-    })
+})
