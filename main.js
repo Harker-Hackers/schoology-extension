@@ -71,6 +71,7 @@ if (location.pathname.includes("/login")) {
     };
 }
 
+// zoom links
 if (location.pathname.split("/")[1] == "zoom_links") {
     document.getElementById("main-content-wrapper").innerHTML = `
 <center>

@@ -40,7 +40,7 @@ chrome.webRequest.onHeadersReceived.addListener(
     },
     {
         types: ["main_frame", "sub_frame"],
-        urls: ["<all_urls>"],
+        urls: ['*://files-cdn.schoology.com/*', '*://schoology.harker.org/lunch']
     },
     ["responseHeaders", "blocking", "extraHeaders"]
 );

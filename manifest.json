@@ -24,6 +24,10 @@
         {
             "matches": ["https://schoology.harker.org/course/*/materials/gp/*"],
             "js": ["pdfview.js"]
+        },
+        {
+            "matches": ["https://schoology.harker.org/lunch"],
+            "js": ["lunch.js"]
         }
     ],
     "background": {
