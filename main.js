@@ -458,7 +458,12 @@ if (location.pathname.split("/")[1] == "schedule") {
                 for (crs in data) {
                     var course = data[crs];
                     var sections = data[crs].sectionPlacements;
-                    try{var p = sections.length}catch(err){location.href="https://schoology.harker.org/schedule/update"}
+                    try {
+                        var p = sections.length;
+                    } catch (err) {
+                        location.href =
+                            "https://schoology.harker.org/schedule/update";
+                    }
                     for (sec = 0; sec < sections.length; sec++) {
                         var section = sections[sec];
                         if (section.periodScheduleName !== day) {
