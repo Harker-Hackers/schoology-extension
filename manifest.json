@@ -10,7 +10,8 @@
         "*://*.schoology.com/*",
         "https://harkerca.infinitecampus.org/*/",
         "https://www.harker.org/*/",
-        "https://saml.finalsite.com/*/"
+        "https://saml.finalsite.com/*/",
+        "*://resources.harker.org/download/*"
     ],
     "content_scripts": [
         {
@@ -24,6 +25,10 @@
         {
             "matches": ["https://schoology.harker.org/course/*/materials/gp/*"],
             "js": ["pdfview.js"]
+        },
+        {
+            "matches": ["https://schoology.harker.org/lunch"],
+            "js": ["lunch.js"]
         }
     ],
     "background": {

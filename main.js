@@ -1,5 +1,20 @@
 var xhr = new XMLHttpRequest();
 
+// Add lunch button
+top_bar_icons = document.getElementsByClassName(
+    "_2trRU _2K08O fSqCh _1tpub"
+)[1];
+new_icon = document.createElement("li");
+new_icon.setAttribute("class", "_24avl _3Rh90 _349XD");
+new_icon.innerHTML = `
+<a href="https://schoology.harker.org/lunch">
+    <button aria-label="Lunch" class="_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw util-height-six-3PHnk util-fill-current-color-2w3fJ Header-header-button-active-state-3AvBm Header-header-button-1EE8Y fjQuT uQOmx" aria-expanded="false" aria-haspopup="true">
+        <img src="https://docs.google.com/drawings/d/e/2PACX-1vTMzmSuOBlwCS_Q8NsLf6LvXZLasbqIA0OvvZXpC114YWfTsJT_MBAhfrV6codBNhX6PGXySW_CHeix/pub?w=673&h=611" legnth=25 width=25>
+    </button>
+</a>
+`;
+top_bar_icons.insertBefore(new_icon, top_bar_icons.childNodes[0]);
+
 var but = document.getElementsByClassName(
     "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw util-height-six-3PHnk Header-header-button-active-state-3AvBm Header-header-button-1EE8Y Z_KgC fjQuT uQOmx"
 )[0];
@@ -71,13 +86,16 @@ if (location.pathname.includes("/login")) {
     };
 }
 
+// zoom links
 if (location.pathname.split("/")[1] == "zoom_links") {
     document.getElementById("main-content-wrapper").innerHTML = `
-<center>
-	<iframe src="https://docs.google.com/document/d/e/2PACX-1vSYNgfaPwFrWQAg8kAu8ykdUf1MbfMocKmGQDQVn1nW86djCHkJFBnxog7O58JOUxCuxHxs-uloESpa/pub" height=700 width=100%></iframe>
-</center>
+    <br>
+    <center>
+        <iframe src="https://docs.google.com/document/d/e/2PACX-1vSYNgfaPwFrWQAg8kAu8ykdUf1MbfMocKmGQDQVn1nW86djCHkJFBnxog7O58JOUxCuxHxs-uloESpa/pub" height=700 width=100% style="border: 1px solid black"></iframe>
+    </center>
 	`;
 }
+
 //SCHEDULE
 if (location.pathname.split("/")[1] == "schedule") {
     try {
