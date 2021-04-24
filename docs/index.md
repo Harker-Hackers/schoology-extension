@@ -1,6 +1,8 @@
-<h1>Harker Schoology Chrome Extension</h1>
-<p>A chome extension that adds awesome features to Schoology, made specifically for Harker students.</p>
-<sub>By Aarav Borthakur and Aarush Valaiya</sub>
+<h1 align="center">Harker Schoology Chrome Extension</h1>
+<p align="center">
+    A chome extension that adds awesome features to Schoology, made specifically for Harker students. \
+    <sub>By Aarav Borthakur and Aarush Valaiya</sub>
+</p>
 
 ## Features
 * ### Infinite campus schedule can now be found on Schoology. 
