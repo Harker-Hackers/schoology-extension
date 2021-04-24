@@ -44,5 +44,8 @@ Too see lunch, look to the top of any Schoology page, next to the search button.
 ## Bugs and Feature Requests
 Please email [good.aarav@gmail.com](mailto:good.aarav@gmail.com) for bug reports and feature requests.
 
+## Releases
+You can view and install previous releases [here](https://github.com/Harker-Hackers/schoology-extension/releases).
+
 ## Contributing
 This utility is completely open source! The source code can be found [here](https://github.com/Harker-Hackers/schoology-extension). Feel free to [contribute](https://gist.github.com/MarcDiethelm/7303312)!
