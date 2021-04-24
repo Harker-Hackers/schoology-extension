@@ -1,0 +1,1 @@
+window.open("https://harker-hackers.github.io/schoology-extension", "_blank")
