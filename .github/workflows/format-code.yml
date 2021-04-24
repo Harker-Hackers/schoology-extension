@@ -23,4 +23,4 @@ jobs:
                   commit_message: Formatted code
                   only_changed: True
               env:
-                  GITHUB_TOKEN: ${{ secrets.GADHABOT_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
