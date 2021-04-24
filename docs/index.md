@@ -1,5 +1,6 @@
-# Harker Schoology Chrome Extension
-A chome extension that adds awesome features to Schoology, made specifically for Harker students. 
+<h1>Harker Schoology Chrome Extension</h1>
+<p>A chome extension that adds awesome features to Schoology, made specifically for Harker students.</p>
+<sub>By Aarav Borthakur and Aarush Valaiya</sub>
 
 ## Features
 * ### Infinite campus schedule can now be found on Schoology. 
@@ -27,7 +28,7 @@ Go to [chrome:extensions](chrome:extensions) and enable developer mode from to t
 
 Drag the unzipped folder to the page, and that's it! You have the extension installed!
 
-### Usage
+## Usage
 To view your schedule and zoom links, hit your profile picture on the top right of any Schoology page. Hit "schedule" or "zoom links" in the dropdown menu.
 
 ![](images/dropdown.png)
@@ -37,3 +38,9 @@ Too see overdue assignments, enter a course's page and look to the right of your
 Too see lunch, look to the top of any Schoology page, next to the search button. Hit the lunch button, and you will be directed to the week's lunch.
 
 ![](images/lunch-icon.png)
+
+## Bugs and Feature Requests
+Please email [good.aarav@gmail.com](mailto:good.aarav@gmail.com) for bug reports and feature requests.
+
+## Contributing
+This utility is completely open source! The source code can be found [here](https://github.com/Harker-Hackers/schoology-extension). Feel free to [contribute](https://gist.github.com/MarcDiethelm/7303312)!
