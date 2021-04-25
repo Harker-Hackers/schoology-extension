@@ -31,13 +31,13 @@ Go to [chrome:extensions](chrome:extensions) and enable developer mode from to t
 Drag the unzipped folder to the page, and that's it! You have the extension installed!
 
 ## Usage
-To view your schedule and zoom links, hit your profile picture on the top right of any Schoology page. Hit "schedule" or "zoom links" in the dropdown menu.
+* **Zoom links and schedule**: To view your schedule and zoom links, hit your profile picture on the top right of any Schoology page. Hit "schedule" or "zoom links" in the dropdown menu.
 
 ![](images/dropdown.png)
 
-Too see overdue assignments, enter a course's page and look to the right of your screen. The overdue assignments should appear above the "upcoming".
+* **Overdue assignments**: To see overdue assignments, enter a course's page and look to the right of your screen. The overdue assignments should appear above the "upcoming".
 
-Too see lunch, look to the top of any Schoology page, next to the search button. Hit the lunch button, and you will be directed to the week's lunch.
+* **Lunch**: Too see lunch, look to the top of any Schoology page, next to the search button. Hit the lunch button, and you will be directed to the week's lunch.
 
 ![](images/lunch-icon.png)
 
