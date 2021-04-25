@@ -14,7 +14,7 @@ These files are directly part of the installed chrome extension.
 -   `main.js` applies to all schoology routes.
 -   `lunch.js` retrieves and displayes the lunch PDF at `/lunch`.
 -   `jQuery.js` is the [jquery library](https://jquery.com).
--   `chart.js` is the [chart.js library](https://jquery.com/).
+-   `chart.js` is the [chart.js library](https://www.chartjs.org).
 -   `background.js` is the background script of this extenison.
 -   `popup/*` are the popup files of this extension, activated when clicking the extension.
 
