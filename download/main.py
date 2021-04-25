@@ -3,6 +3,7 @@ from os import getenv
 from rockset import Client, Q
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from requests import get
 
 app = flask.Flask(__name__)
 rs = Client(api_key=getenv("RS2_TOKEN"), api_server="api.rs2.usw2.rockset.com")
@@ -15,7 +16,8 @@ limiter = Limiter(
 
 @app.route("/")
 def main():
-    return flask.redirect("https://github.com/Harker-Hackers/schoology-extension/archive/refs/heads/master.zip")
+    latest_zip = get("https://api.github.com/repos/Harker-Hackers/schoology-extension/releases/latest").json()["zipball_url"]
+    return flask.redirect(latest_zip)
 
 @app.route("/dashboard")
 def dashboard():
