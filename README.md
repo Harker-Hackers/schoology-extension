@@ -70,12 +70,14 @@ These files contain vscode enviroment recommendations.
 -   `.vscode/extensions.json` has the recommended vscode extensions.
 
 ### Website
+
 1. [Install Ruby](https://www.ruby-lang.org/en/documentation/installation/).
 2. [Install Jekyll](https://jekyllrb.com/docs/installation/).
 3. Navigate to [`docs/`](docs): `cd docs`.
 4. Run server: `jekyll serve`.
 
 ### VSCode
+
 1. Install the recommened extensions.
 
 ![](images/recommended-extensions.png)
