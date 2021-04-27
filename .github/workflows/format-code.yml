@@ -20,7 +20,7 @@ jobs:
               uses: creyD/prettier_action@v3.1
               with:
                   prettier_options: --write .
-                  commit_message: Formatted code
+                  commit_message: Format code
                   only_changed: True
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
