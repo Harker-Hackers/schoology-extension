@@ -1,6 +1,7 @@
 {
-	"recommendations": [
-		"rocksetinc.rockset-vscode",
-		"esbenp.prettier-vscode"
-	]
+    "recommendations": [
+        "rocksetinc.rockset-vscode",
+        "esbenp.prettier-vscode",
+        "ms-python.python"
+    ]
 }

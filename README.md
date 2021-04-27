@@ -4,7 +4,7 @@ Website: [https://harker-hackers.github.io/schoology-extension](https://harker-h
 
 ## Developing
 
-#### Extension files
+### Extension files
 
 These files are directly part of the installed chrome extension.
 
@@ -68,3 +68,20 @@ These files are configuration for git.
 These files contain vscode enviroment recommendations.
 
 -   `.vscode/extensions.json` has the recommended vscode extensions.
+
+### Website
+
+1. [Install Ruby](https://www.ruby-lang.org/en/documentation/installation/).
+2. [Install Jekyll](https://jekyllrb.com/docs/installation/).
+3. Navigate to [`docs/`](docs): `cd docs`.
+4. Run server: `jekyll serve`.
+
+### VSCode
+
+1. Install the recommened extensions.
+
+![](images/recommended-extensions.png)
+
+2. All python files in this project use python 3.6.4. Set your intepreter appropriately.
+
+![](images/interpreter.png)
