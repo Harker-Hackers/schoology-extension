@@ -1,3 +1,4 @@
+document.title = "Lunch"
 chrome.runtime.sendMessage(
 	{
 		type: "url",
