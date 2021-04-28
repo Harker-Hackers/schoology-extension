@@ -88,7 +88,7 @@ if (location.pathname.includes("/login")) {
 
 // zoom links
 if (location.pathname.split("/")[1] == "zoom_links") {
-    document.title = "Zoom Links"
+    document.title = "Zoom Links";
     document.getElementById("main-content-wrapper").innerHTML = `
     <br>
     <center>
@@ -99,7 +99,7 @@ if (location.pathname.split("/")[1] == "zoom_links") {
 
 //SCHEDULE
 if (location.pathname.split("/")[1] == "schedule") {
-    document.title = "Schedule"
+    document.title = "Schedule";
     try {
         document.getElementById("content-wrapper").innerHTML = `
 		<style>
