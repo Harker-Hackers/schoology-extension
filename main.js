@@ -1,14 +1,21 @@
 var xhr = new XMLHttpRequest();
 
 // utils
-function logout(destination=null) {
-    profile_dropdown = document.getElementsByClassName(
-        "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx"
-    )[6].click(); // open dropdown
-    logout_button = document.getElementsByClassName("_2JX1Q _3VHSs _1k0yk _3_bfp _1tpub dVlNp _3v0y7 _3eD4l _3ghFm _3LeCL _3lLLU _2gJbx util-text-decoration-none-1n0lI Header-header-button-active-state-3AvBm Header-header-drop-menu-3SaYV Header-header-drop-menu-item-3d3IZ logout")[0] // get logout button
-    if (destination){
+function logout(destination = null) {
+    profile_dropdown = document
+        .getElementsByClassName(
+            "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx"
+        )[6]
+        .click(); // open dropdown
+    logout_button = document.getElementsByClassName(
+        "_2JX1Q _3VHSs _1k0yk _3_bfp _1tpub dVlNp _3v0y7 _3eD4l _3ghFm _3LeCL _3lLLU _2gJbx util-text-decoration-none-1n0lI Header-header-button-active-state-3AvBm Header-header-drop-menu-3SaYV Header-header-drop-menu-item-3d3IZ logout"
+    )[0]; // get logout button
+    if (destination) {
         // if destination is given, set redirect of logout page
-        logout_button.setAttribute("href", logout_button.getAttribute("href") + `&destination=${destination}`)
+        logout_button.setAttribute(
+            "href",
+            logout_button.getAttribute("href") + `&destination=${destination}`
+        );
     }
     logout_button.click(); // click logout button
 }
@@ -258,7 +265,7 @@ if (location.pathname.split("/")[1] == "schedule") {
                         cont(data["scUser"], 0)
                     );
                 } else {
-                    logout(destination="schedule")
+                    logout((destination = "schedule"));
                 }
             }
             document.getElementById("userDef").textContent = String(
@@ -273,7 +280,7 @@ if (location.pathname.split("/")[1] == "schedule") {
                         cont2(data["scPass"], 0)
                     );
                 } else {
-                    logout(destination="schedule")
+                    logout((destination = "schedule"));
                 }
             }
             document.getElementById("passDef").textContent = String(
@@ -366,7 +373,7 @@ if (location.pathname.split("/")[1] == "schedule") {
                                 if ("scPass" in k) {
                                     nexttwo(k.scPass);
                                 } else {
-                                    logout(destination="schedule")
+                                    logout((destination = "schedule"));
                                 }
                             }
                         );
@@ -381,7 +388,7 @@ if (location.pathname.split("/")[1] == "schedule") {
                         if ("scUser" in k) {
                             next(k.scUser);
                         } else {
-                            logout(destination="schedule")
+                            logout((destination = "schedule"));
                         }
                     });
                 }
