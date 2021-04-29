@@ -1,6 +1,8 @@
 var xhr = new XMLHttpRequest();
 
 // Add lunch button
+
+try{
 top_bar_icons = document.getElementsByClassName(
     "_2trRU _2K08O fSqCh _1tpub"
 )[1];
@@ -14,6 +16,8 @@ new_icon.innerHTML = `
 </a>
 `;
 top_bar_icons.insertBefore(new_icon, top_bar_icons.childNodes[0]);
+
+}catch(err){}
 
 var but = document.getElementsByClassName(
     "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw util-height-six-3PHnk Header-header-button-active-state-3AvBm Header-header-button-1EE8Y Z_KgC fjQuT uQOmx"
@@ -248,7 +252,7 @@ if (location.pathname.split("/")[1] == "schedule") {
                     } catch (err) {
                         k = document.getElementsByClassName(
                             "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx"
-                        )[5];
+                        )[6];
                         k.click();
                         document.querySelectorAll(".logout")[0].click();
                     }
@@ -271,7 +275,7 @@ if (location.pathname.split("/")[1] == "schedule") {
                     } catch (err) {
                         k = document.getElementsByClassName(
                             "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx"
-                        )[5];
+                        )[6];
                         k.click();
                         document.querySelectorAll(".logout")[0].click();
                     }
@@ -374,7 +378,7 @@ if (location.pathname.split("/")[1] == "schedule") {
                                     } catch (err) {
                                         k = document.getElementsByClassName(
                                             "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx"
-                                        )[5];
+                                        )[6];
                                         k.click();
                                         document
                                             .querySelectorAll(".logout")[0]
@@ -399,7 +403,7 @@ if (location.pathname.split("/")[1] == "schedule") {
                             } catch (err) {
                                 k = document.getElementsByClassName(
                                     "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx"
-                                )[5];
+                                )[6];
                                 k.click();
                                 document.querySelectorAll(".logout")[0].click();
                             }
