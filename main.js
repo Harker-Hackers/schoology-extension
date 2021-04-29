@@ -2,6 +2,13 @@ var xhr = new XMLHttpRequest();
 
 // utils
 function logout(destination = null) {
+<<<<<<< HEAD
+    /**
+     * Logs out of Schoology
+     * @param {String} destination Schoology route to redirect to after logging in
+     */
+=======
+>>>>>>> 1c2e5a20081a5f3ae59200889ef812bb2f3f4f73
     profile_dropdown = document
         .getElementsByClassName(
             "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx"
@@ -19,6 +26,8 @@ function logout(destination = null) {
     }
     logout_button.click(); // click logout button
 }
+<<<<<<< HEAD
+=======
 
 // Add lunch button
 try {
@@ -40,14 +49,18 @@ try {
 var but = document.getElementsByClassName(
     "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw util-height-six-3PHnk Header-header-button-active-state-3AvBm Header-header-button-1EE8Y Z_KgC fjQuT uQOmx"
 )[0];
+>>>>>>> 1c2e5a20081a5f3ae59200889ef812bb2f3f4f73
 
-function k() {
+function append_to_usermenu() {
+    /**
+     * Adds "Schedule" and "Zoom Links" to profile dropdown
+     */
     var userMenu = document.getElementsByClassName(
         "_2T2dA Header-header-drop-menu-3SaYV util-min-width-twenty-two-2a0Y- util-max-width-twenty-six-1OJjn _38KgL _35hYo _2mWUT _2ue1O les2- util-box-shadow-dropdown-2Bl9b util-margin-top-negative-point-four-3GRLY _3Xw3k _2trRU j17AQ S42JQ VSOiH _3RmDr fjQuT uQOmx"
     )[0];
 
-    if (userMenu == undefined) {
-        setTimeout(k, 5);
+    if (!userMenu) {
+        setTimeout(append_to_usermenu, 5);
         return;
     }
 
@@ -90,13 +103,62 @@ function k() {
     );
 }
 
+function updateAllScheds() {
+    /**
+     * Re-retrieves schedule from infinite campus
+     */
+    location.pathname = "/schedule/update";
+}
+
+function changeInfPW() {
+    /** Changes the password used to ping Infinite Campus */
+    location.pathname = "/schedule/inf";
+}
+
+function replace_iframe(iframe_elem, src, dimensions=null) {
+    iframe_elem.setAttribute("src", link);
+    if (dimensions) {
+        iframe_elem.setAttribute("height", dimensions[0])
+        iframe_elem.setAttribute("width", dimensions[1])
+    }
+}
+
+function change_view_buttons(link) {
+    docs = document.getElementsByClassName("view-file-popup ")
+    console.log(docs)
+    for (doc of docs){
+        doc.setAttribute("href", link)
+    }
+}
+
+/* -------------- */
+
+// Add lunch button
 try {
-    but.onclick = function () {
-        setTimeout(k, 50);
-    };
+    top_bar_icons = document.getElementsByClassName(
+        "_2trRU _2K08O fSqCh _1tpub"
+    )[1]; // get top bar
+    new_icon = document.createElement("li"); // create new list element
+    new_icon.setAttribute("class", "_24avl _3Rh90 _349XD"); // set `new_icon` attribute "class"
+    new_icon.innerHTML = `
+<a href="https://schoology.harker.org/lunch">
+    <button aria-label="Lunch" class="_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw util-height-six-3PHnk util-fill-current-color-2w3fJ Header-header-button-active-state-3AvBm Header-header-button-1EE8Y fjQuT uQOmx" aria-expanded="false" aria-haspopup="true">
+        <img src="https://docs.google.com/drawings/d/e/2PACX-1vTMzmSuOBlwCS_Q8NsLf6LvXZLasbqIA0OvvZXpC114YWfTsJT_MBAhfrV6codBNhX6PGXySW_CHeix/pub?w=673&h=611" legnth=25 width=25>
+    </button>
+</a>
+`; // set innerHTML of `new_icon`
+    top_bar_icons.insertBefore(new_icon, top_bar_icons.childNodes[0]); // insert the new list item into top bar
 } catch (err) {}
 
-//GETTING PW AND USERNAME
+var but = document.getElementsByClassName(
+    "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw util-height-six-3PHnk Header-header-button-active-state-3AvBm Header-header-button-1EE8Y Z_KgC fjQuT uQOmx"
+)[0];
+
+try {
+    but.onclick = setTimeout(append_to_usermenu, 50);
+} catch (err) {}
+
+// retrieve username and password from `/login`
 if (location.pathname.includes("/login")) {
     document.getElementById("s-user-login-form").onsubmit = function () {
         chrome.storage.local.set({
@@ -108,7 +170,7 @@ if (location.pathname.includes("/login")) {
     };
 }
 
-// zoom links
+// zoom links (`/zoom_links`)
 if (location.pathname.split("/")[1] == "zoom_links") {
     document.title = "Zoom Links";
     document.getElementById("main-content-wrapper").innerHTML = `
@@ -119,7 +181,7 @@ if (location.pathname.split("/")[1] == "zoom_links") {
 	`;
 }
 
-//SCHEDULE
+// schedule (`/schedule`)
 if (location.pathname.split("/")[1] == "schedule") {
     document.title = "Schedule";
     try {
@@ -240,7 +302,7 @@ if (location.pathname.split("/")[1] == "schedule") {
 		`;
     } catch (err) {}
 
-    //changing infinite campus schedule
+    // changing infinite campus schedule (triggered on button click)
     if (location.pathname == "/schedule/inf") {
         var contentdiv = document.getElementById("schedLoader");
         contentdiv.innerHTML = `
@@ -274,7 +336,7 @@ if (location.pathname.split("/")[1] == "schedule") {
         };
         chrome.storage.local.get("infUser", (data) => cont(data["infUser"], 1));
         var cont2 = function (data, t) {
-            if (data == {} || data == undefined) {
+            if (data == {} || !data) {
                 if (t == 1) {
                     chrome.storage.local.get("scPass", (data) =>
                         cont2(data["scPass"], 0)
@@ -302,17 +364,15 @@ if (location.pathname.split("/")[1] == "schedule") {
 
         document.getElementById("fUP").onsubmit = submitForm;
     } else {
-        var formCallback3 = function () {
-            chrome.runtime.sendMessage(
-                {
-                    type: "url",
-                    cors: true,
-                    url:
-                        "https://harkerca.infinitecampus.org/campus/resources/portal/roster?_expand=%7BsectionPlacements-%7Bterm%7D%7D",
-                },
-                (data) => schedCB(data)
-            );
-        };
+        var formCallback3 = chrome.runtime.sendMessage(
+            {
+                type: "url",
+                cors: true,
+                url:
+                    "https://harkerca.infinitecampus.org/campus/resources/portal/roster?_expand=%7BsectionPlacements-%7Bterm%7D%7D",
+            },
+            (data) => schedCB(data)
+        );
         var formCallBack2 = function (pData) {
             try {
                 var samltok = pData.match(
@@ -435,13 +495,8 @@ if (location.pathname.split("/")[1] == "schedule") {
 
 	`;
 
-            function updateAllScheds() {
-                location.pathname = "/schedule/update";
-            }
+            ///////////////////////////////////////
             document.getElementById("updateSched").onclick = updateAllScheds;
-            function changeInfPW() {
-                location.pathname = "/schedule/inf";
-            }
             document.getElementById("changeInfPW").onclick = changeInfPW;
 
             chrome.storage.local.set({ schedData: rawData });
@@ -788,7 +843,6 @@ if (location.pathname.includes("/grades/grades")) {
         });
         var fDate = 0;
         var eDate = 0;
-        console.log("NEW SUBJECT");
         for (var k = 0; k < bList.length; k++) {
             var grade = bList[k];
             var wc = weights[grade.wc];
@@ -798,12 +852,6 @@ if (location.pathname.includes("/grades/grades")) {
             } catch (err) {
                 continue;
             }
-            console.log(
-                "Grade: " +
-                    grade.grade1 / grade.grade2 +
-                    "   \nDate: " +
-                    grade.date
-            );
             var avgT = 0.0;
             for (var l in weights) {
                 if (weights[l].tot1 == 0) {
@@ -918,4 +966,24 @@ if (location.pathname.includes("/grades/grades")) {
             }
         }
     }
+}
+
+if (location.pathname.includes("course") && location.pathname.includes("materials/gp")) {
+    // Get PDF link
+    inside_span = document.getElementsByClassName("attachments-file-name")[0]
+        .innerHTML;
+
+    start = inside_span.indexOf('<a href="') + 9;
+    end = inside_span.indexOf(">") - 28;
+    link = inside_span.slice(start, end);
+
+    // Change iframe
+    try{
+        replace_iframe(document.getElementsByClassName("docviewer-iframe")[0], link)
+    }catch(err){/*iframe does not exist*/}
+
+    // Change "view" button
+    try{
+        change_view_buttons(link)
+    }catch(err){console.log(err)}
 }
