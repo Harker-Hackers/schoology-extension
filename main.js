@@ -1,19 +1,41 @@
 var xhr = new XMLHttpRequest();
 
+// utils
+function logout(destination = null) {
+    profile_dropdown = document
+        .getElementsByClassName(
+            "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx"
+        )[6]
+        .click(); // open dropdown
+    logout_button = document.getElementsByClassName(
+        "_2JX1Q _3VHSs _1k0yk _3_bfp _1tpub dVlNp _3v0y7 _3eD4l _3ghFm _3LeCL _3lLLU _2gJbx util-text-decoration-none-1n0lI Header-header-button-active-state-3AvBm Header-header-drop-menu-3SaYV Header-header-drop-menu-item-3d3IZ logout"
+    )[0]; // get logout button
+    if (destination) {
+        // if destination is given, set redirect of logout page
+        logout_button.setAttribute(
+            "href",
+            logout_button.getAttribute("href") + `&destination=${destination}`
+        );
+    }
+    logout_button.click(); // click logout button
+}
+
 // Add lunch button
-top_bar_icons = document.getElementsByClassName(
-    "_2trRU _2K08O fSqCh _1tpub"
-)[1];
-new_icon = document.createElement("li");
-new_icon.setAttribute("class", "_24avl _3Rh90 _349XD");
-new_icon.innerHTML = `
+try {
+    top_bar_icons = document.getElementsByClassName(
+        "_2trRU _2K08O fSqCh _1tpub"
+    )[1];
+    new_icon = document.createElement("li");
+    new_icon.setAttribute("class", "_24avl _3Rh90 _349XD");
+    new_icon.innerHTML = `
 <a href="https://schoology.harker.org/lunch">
     <button aria-label="Lunch" class="_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw util-height-six-3PHnk util-fill-current-color-2w3fJ Header-header-button-active-state-3AvBm Header-header-button-1EE8Y fjQuT uQOmx" aria-expanded="false" aria-haspopup="true">
         <img src="https://docs.google.com/drawings/d/e/2PACX-1vTMzmSuOBlwCS_Q8NsLf6LvXZLasbqIA0OvvZXpC114YWfTsJT_MBAhfrV6codBNhX6PGXySW_CHeix/pub?w=673&h=611" legnth=25 width=25>
     </button>
 </a>
 `;
-top_bar_icons.insertBefore(new_icon, top_bar_icons.childNodes[0]);
+    top_bar_icons.insertBefore(new_icon, top_bar_icons.childNodes[0]);
+} catch (err) {}
 
 var but = document.getElementsByClassName(
     "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw util-height-six-3PHnk Header-header-button-active-state-3AvBm Header-header-button-1EE8Y Z_KgC fjQuT uQOmx"
@@ -243,15 +265,7 @@ if (location.pathname.split("/")[1] == "schedule") {
                         cont(data["scUser"], 0)
                     );
                 } else {
-                    try {
-                        document.querySelectorAll(".logout")[0].click();
-                    } catch (err) {
-                        k = document.getElementsByClassName(
-                            "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx"
-                        )[5];
-                        k.click();
-                        document.querySelectorAll(".logout")[0].click();
-                    }
+                    logout((destination = "schedule"));
                 }
             }
             document.getElementById("userDef").textContent = String(
@@ -266,15 +280,7 @@ if (location.pathname.split("/")[1] == "schedule") {
                         cont2(data["scPass"], 0)
                     );
                 } else {
-                    try {
-                        document.querySelectorAll(".logout")[0].click();
-                    } catch (err) {
-                        k = document.getElementsByClassName(
-                            "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx"
-                        )[5];
-                        k.click();
-                        document.querySelectorAll(".logout")[0].click();
-                    }
+                    logout((destination = "schedule"));
                 }
             }
             document.getElementById("passDef").textContent = String(
@@ -367,19 +373,7 @@ if (location.pathname.split("/")[1] == "schedule") {
                                 if ("scPass" in k) {
                                     nexttwo(k.scPass);
                                 } else {
-                                    try {
-                                        document
-                                            .querySelectorAll(".logout")[0]
-                                            .click();
-                                    } catch (err) {
-                                        k = document.getElementsByClassName(
-                                            "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx"
-                                        )[5];
-                                        k.click();
-                                        document
-                                            .querySelectorAll(".logout")[0]
-                                            .click();
-                                    }
+                                    logout((destination = "schedule"));
                                 }
                             }
                         );
@@ -394,15 +388,7 @@ if (location.pathname.split("/")[1] == "schedule") {
                         if ("scUser" in k) {
                             next(k.scUser);
                         } else {
-                            try {
-                                document.querySelectorAll(".logout")[0].click();
-                            } catch (err) {
-                                k = document.getElementsByClassName(
-                                    "_1SIMq _2kpZl _3OAXJ _13cCs _3_bfp _2M5aC _24avl _3v0y7 _2s0LQ _3ghFm _3LeCL _31GLY _9GDcm _1D8fw fjQuT uQOmx"
-                                )[5];
-                                k.click();
-                                document.querySelectorAll(".logout")[0].click();
-                            }
+                            logout((destination = "schedule"));
                         }
                     });
                 }
