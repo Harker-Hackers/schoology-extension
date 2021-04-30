@@ -302,10 +302,8 @@ if (location.pathname.split("/")[1] == "schedule") {
                     logout((destination = "schedule"));
                 }
             }
-            document.getElementById("userDef").textContent = String(
-                "Username"
-            );
-            document.getElementById("userInp").setAttribute("value", username)
+            document.getElementById("userDef").textContent = String("Username");
+            document.getElementById("userInp").setAttribute("value", username);
         }
 
         chrome.storage.local.get("infUser", (data) => cont(data["infUser"], 1));
@@ -320,11 +318,9 @@ if (location.pathname.split("/")[1] == "schedule") {
                     logout((destination = "schedule"));
                 }
             }
-            document.getElementById("passDef").textContent = String(
-                "Password"
-            );
+            document.getElementById("passDef").textContent = String("Password");
 
-            document.getElementById("passInp").setAttribute("value", pw)
+            document.getElementById("passInp").setAttribute("value", pw);
         }
         chrome.storage.local.get("infPass", (data) =>
             cont2(data["infPass"], 1)
@@ -339,7 +335,7 @@ if (location.pathname.split("/")[1] == "schedule") {
                 infPass: document.getElementById("passInp").value,
             });
             location.href = "https://schoology.harker.org/schedule/update";
-        };
+        }
 
         document.getElementById("fUP").onsubmit = submitForm;
     } else {
