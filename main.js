@@ -88,19 +88,18 @@ function changeInfPW() {
     location.pathname = "/schedule/inf";
 }
 
-function replace_iframe(iframe_elem, src, dimensions=null) {
+function replace_iframe(iframe_elem, src, dimensions = null) {
     iframe_elem.setAttribute("src", link);
     if (dimensions) {
-        iframe_elem.setAttribute("height", dimensions[0])
-        iframe_elem.setAttribute("width", dimensions[1])
+        iframe_elem.setAttribute("height", dimensions[0]);
+        iframe_elem.setAttribute("width", dimensions[1]);
     }
 }
 
 function change_view_buttons(link) {
-    docs = document.getElementsByClassName("view-file-popup ")
-    console.log(docs)
-    for (doc of docs){
-        doc.setAttribute("href", link)
+    docs = document.getElementsByClassName("view-file-popup ");
+    for (doc of docs) {
+        doc.setAttribute("href", link);
     }
 }
 
@@ -293,7 +292,7 @@ if (location.pathname.split("/")[1] == "schedule") {
 		</div>
 		`;
 
-        var cont = function (data, t) {
+        function cont(data, t) {
             if (data == {} || data == undefined) {
                 if (t == 1) {
                     chrome.storage.local.get("scUser", (data) =>
@@ -306,9 +305,9 @@ if (location.pathname.split("/")[1] == "schedule") {
             document.getElementById("userDef").textContent = String(
                 "Username: " + data
             );
-        };
+        }
         chrome.storage.local.get("infUser", (data) => cont(data["infUser"], 1));
-        var cont2 = function (data, t) {
+        function cont2(data, t) {
             if (data == {} || !data) {
                 if (t == 1) {
                     chrome.storage.local.get("scPass", (data) =>
@@ -321,31 +320,35 @@ if (location.pathname.split("/")[1] == "schedule") {
             document.getElementById("passDef").textContent = String(
                 "Password: " + data
             );
-        };
+        }
         chrome.storage.local.get("infPass", (data) =>
             cont2(data["infPass"], 1)
         );
 
-        var submitForm = function () {
+        var submitForm = function (e) {
+            e.preventDefault();
             chrome.storage.local.set({
                 infUser: document.getElementById("userInp").value,
             });
             chrome.storage.local.set({
                 infPass: document.getElementById("passInp").value,
             });
+            location.href = "https://schoology.harker.org/schedule/update";
         };
 
         document.getElementById("fUP").onsubmit = submitForm;
     } else {
-        var formCallback3 = chrome.runtime.sendMessage(
-            {
-                type: "url",
-                cors: true,
-                url:
-                    "https://harkerca.infinitecampus.org/campus/resources/portal/roster?_expand=%7BsectionPlacements-%7Bterm%7D%7D",
-            },
-            (data) => schedCB(data)
-        );
+        var formCallback3 = function () {
+            chrome.runtime.sendMessage(
+                {
+                    type: "url",
+                    cors: true,
+                    url:
+                        "https://harkerca.infinitecampus.org/campus/resources/portal/roster?_expand=%7BsectionPlacements-%7Bterm%7D%7D",
+                },
+                (data) => schedCB(data)
+            );
+        };
         var formCallBack2 = function (pData) {
             try {
                 var samltok = pData.match(
@@ -495,8 +498,11 @@ if (location.pathname.split("/")[1] == "schedule") {
                     try {
                         var p = sections.length;
                     } catch (err) {
-                        location.href =
-                            "https://schoology.harker.org/schedule/update";
+                        document.getElementById(
+                            "content-wrapper"
+                        ).innerHTML += `
+						<p>We recieved no schedule from infinite campus. Click on update schedule to reload the schedule from infinite campus. If you get this error again, your infinite campus username and password are invalid. Click on "Use Different Username and Password" and input your infinite campus credentials.</p>`;
+                        throw "invalid username and pw";
                     }
                     for (sec = 0; sec < sections.length; sec++) {
                         var section = sections[sec];
@@ -941,7 +947,10 @@ if (location.pathname.includes("/grades/grades")) {
     }
 }
 
-if (location.pathname.includes("course") && location.pathname.includes("materials/gp")) {
+if (
+    location.pathname.includes("course") &&
+    location.pathname.includes("materials/gp")
+) {
     // Get PDF link
     inside_span = document.getElementsByClassName("attachments-file-name")[0]
         .innerHTML;
@@ -951,12 +960,19 @@ if (location.pathname.includes("course") && location.pathname.includes("material
     link = inside_span.slice(start, end);
 
     // Change iframe
-    try{
-        replace_iframe(document.getElementsByClassName("docviewer-iframe")[0], link)
-    }catch(err){/*iframe does not exist*/}
+    try {
+        replace_iframe(
+            document.getElementsByClassName("docviewer-iframe")[0],
+            link
+        );
+    } catch (err) {
+        /*iframe does not exist*/
+    }
 
     // Change "view" button
-    try{
-        change_view_buttons(link)
-    }catch(err){console.log(err)}
+    try {
+        change_view_buttons(link);
+    } catch (err) {
+        console.log(err);
+    }
 }
