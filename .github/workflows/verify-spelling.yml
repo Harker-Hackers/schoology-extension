@@ -9,6 +9,6 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - name: Install dependencies
-              run: npm install --global spellchecker-cli --save-dev
+              run: sudo npm install --global spellchecker-cli --save-dev
             - name: Check spelling
               run: ./node_modules/.bin/spellchecker docs/index.md -i Schoology Harker
