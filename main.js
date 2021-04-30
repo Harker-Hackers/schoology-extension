@@ -98,7 +98,6 @@ function replace_iframe(iframe_elem, src, dimensions = null) {
 
 function change_view_buttons(link) {
     docs = document.getElementsByClassName("view-file-popup ");
-    console.log(docs);
     for (doc of docs) {
         doc.setAttribute("href", link);
     }
@@ -387,7 +386,6 @@ if (location.pathname.split("/")[1] == "schedule") {
                 var username = p;
                 var nexttwo = function (q) {
                     var pass = q;
-                    console.log(username + ":" + pass);
                     chrome.runtime.sendMessage(
                         {
                             type: "urlPost",
