@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/Harker-Hackers/schoology-extension#readme",
     "devDependencies": {
-        "prettier": "2.2.1"
+        "prettier": "2.2.1",
+        "spellchecker-cli": "^4.4.0"
     }
 }
