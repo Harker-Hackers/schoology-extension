@@ -39,7 +39,8 @@ Drag the unzipped folder to the page, and that's it! You have the extension inst
 
 ## Usage
 
-To view your schedule and zoom links, hit your profile picture on the top right of any Schoology page. Hit "schedule" or "zoom links" in the dropdown menu.
+To view your schedule and zoom links, hit your profile picture on the top right of any Schoology page. You must be signed in with your Harker email for this to work.
+Hit "schedule" or "zoom links" in the dropdown menu. On your first time on your schedule page, you will be asked to login to Schoology again.
 
 ![](images/dropdown.png)
 
