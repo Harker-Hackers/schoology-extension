@@ -292,40 +292,45 @@ if (location.pathname.split("/")[1] == "schedule") {
 		</div>
 		`;
 
-        function cont(data, t) {
-            if (data == {} || data == undefined) {
+        function cont(username, t) {
+            if (username == {} || !username) {
                 if (t == 1) {
-                    chrome.storage.local.get("scUser", (data) =>
-                        cont(data["scUser"], 0)
+                    chrome.storage.local.get("scUser", (username) =>
+                        cont(username["scUser"], 0)
                     );
                 } else {
                     logout((destination = "schedule"));
                 }
             }
             document.getElementById("userDef").textContent = String(
-                "Username: " + data
+                "Username"
             );
+            document.getElementById("userInp").setAttribute("value", username)
         }
+
         chrome.storage.local.get("infUser", (data) => cont(data["infUser"], 1));
-        function cont2(data, t) {
-            if (data == {} || !data) {
+
+        function cont2(pw, t) {
+            if (pw == {} || !pw) {
                 if (t == 1) {
-                    chrome.storage.local.get("scPass", (data) =>
-                        cont2(data["scPass"], 0)
+                    chrome.storage.local.get("scPass", (pw) =>
+                        cont2(pw["scPass"], 0)
                     );
                 } else {
                     logout((destination = "schedule"));
                 }
             }
             document.getElementById("passDef").textContent = String(
-                "Password: " + data
+                "Password"
             );
+
+            document.getElementById("passInp").setAttribute("value", pw)
         }
         chrome.storage.local.get("infPass", (data) =>
             cont2(data["infPass"], 1)
         );
 
-        var submitForm = function (e) {
+        function submitForm(e) {
             e.preventDefault();
             chrome.storage.local.set({
                 infUser: document.getElementById("userInp").value,
