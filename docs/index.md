@@ -1,7 +1,7 @@
 <h1 align="center">Harker Schoology Chrome Extension</h1>
 <p align="center">
     A Chrome extension that adds awesome features to Schoology, made specifically for Harker students.<br>
-    <sub>By Aarav Borthakur and Aarush Valaiya</sub>
+    <sub>By Aarav Borthakur and Aarush Vailaya</sub>
 </p>
 
 ## Features
