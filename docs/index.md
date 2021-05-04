@@ -32,7 +32,7 @@
 
 Click [here](https://schoology-extension.herokuapp.com) to download the extension files (can take up to ten seconds to wakeup app). Unzip the download.
 
-Go to [chrome:extensions](chrome:extensions) and enable developer mode from to top right of your screen, to the right of the search bar.
+Go to [chrome::/extensions](chrome::/extensions) and enable developer mode from to top right of your screen, to the right of the search bar.
 ![](images/developer-mode.png)
 
 Drag the unzipped folder to the page, and that's it! You have the extension installed!
