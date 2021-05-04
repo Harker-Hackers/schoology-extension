@@ -947,33 +947,3 @@ if (location.pathname.includes("/grades/grades")) {
         }
     }
 }
-
-if (
-    location.pathname.includes("course") &&
-    location.pathname.includes("materials/gp")
-) {
-    // Get PDF link
-    inside_span = document.getElementsByClassName("attachments-file-name")[0]
-        .innerHTML;
-
-    start = inside_span.indexOf('<a href="') + 9;
-    end = inside_span.indexOf(">") - 28;
-    link = inside_span.slice(start, end);
-
-    // Change iframe
-    try {
-        replace_iframe(
-            document.getElementsByClassName("docviewer-iframe")[0],
-            link
-        );
-    } catch (err) {
-        /*iframe does not exist*/
-    }
-
-    // Change "view" button
-    try {
-        change_view_buttons(link);
-    } catch (err) {
-        console.log(err);
-    }
-}
