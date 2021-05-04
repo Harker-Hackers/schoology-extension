@@ -1,6 +1,6 @@
 {
     "name": "Harker Hackers Schoology Extension",
-    "version": "1.1.0",
+    "version": "1.1.3",
     "description": "Schoology Schedule",
     "permissions": [
         "storage",
