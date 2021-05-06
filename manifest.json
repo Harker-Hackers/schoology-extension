@@ -20,7 +20,7 @@
         },
         {
             "matches": ["https://schoology.harker.org/*"],
-            "js": ["jQuery.js", "main.js"]
+            "js": ["jQuery.js", "updater.js", "main.js"]
         },
         {
             "matches": ["https://schoology.harker.org/course/*/materials/gp/*"],
