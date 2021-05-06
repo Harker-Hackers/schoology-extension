@@ -14,7 +14,7 @@ chrome.runtime.sendMessage(
 		url: "https://api.github.com/repos/Harker-Hackers/schoology-extension/releases",
 	}, data => {
 		var latest_version=JSON.parse(data)[0].name
-		if (latest_version==curr_version){
+		if (latest_version!=curr_version){
 			var new_features=JSON.parse(data)[0].body;
 			updateVersion(latest_version,new_features);
 		}
