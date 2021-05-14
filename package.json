@@ -9,7 +9,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "format-code": "npx prettier --write .",
-        "docs-spellcheck": "node_modules/spellchecker-cli/index.js docs/index.md -i Schoology Harker dropdown"        
+        "spellcheck": "node_modules/spellchecker-cli/index.js docs/index.md -i Schoology Harker dropdown"        
     },
     "repository": {
         "type": "git",

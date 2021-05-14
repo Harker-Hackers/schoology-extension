@@ -4,6 +4,17 @@
     <sub>By Aarav Borthakur and Aarush Vailaya</sub>
 </p>
 
+***
+
+* [Features](#features)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Bugs and feature requests](#bugs-and-feature-requests)
+* [Releases](#releases)
+* [Contributing](#contributing)
+
+***
+
 ## Features
 
 -   ### Infinite campus schedule can now be found on Schoology.
@@ -30,7 +41,7 @@
 
 ## Installation
 
-Click [here](https://schoology-extension.herokuapp.com) to download the extension files (can take up to ten seconds to wakeup app). Unzip the download.
+Click [here](https://schoology-extension.herokuapp.com) to download the extension files (can take up to ten seconds to wake up app). Unzip the download.
 
 Go to [chrome://extensions/](chrome://extensions/) and enable developer mode from to top right of your screen, to the right of the search bar.
 ![](images/developer-mode.png)
