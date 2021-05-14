@@ -8,8 +8,9 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "format-code": "npx prettier --write .",
-        "spellcheck": "node_modules/spellchecker-cli/index.js docs/index.md -i Schoology Harker dropdown"        
+        "format-code": "node_modules/prettier/bin-prettier.js --write .",
+        "spellcheck": "node_modules/spellchecker-cli/index.js docs/index.md -i Schoology Harker dropdown",
+        "link-check": "node_modules/markdown-link-check/markdown-link-check docs/index.md "
     },
     "repository": {
         "type": "git",
@@ -22,6 +23,7 @@
     },
     "homepage": "https://github.com/Harker-Hackers/schoology-extension#readme",
     "devDependencies": {
+        "markdown-link-check": "^3.8.7",
         "prettier": "2.2.1",
         "spellchecker-cli": "^4.4.0"
     }
