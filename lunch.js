@@ -11,10 +11,10 @@ chrome.runtime.sendMessage(
         pdf_link = result.slice(start, end);
         console.log(pdf_link);
 
-        document.getElementById("main-content-wrapper").innerHTML = `
+        document.getElementById("wrapper").innerHTML = `
     <br>
     <center>
-        <iframe src="${pdf_link}" height=700 width=100% style="border: 1px solid black"></iframe>
+        <iframe src="${"https://resources.harker.org/download/middle-school-lunch-menu/?wpdmdl=130"}" height=700 width=80% style="border: 1px solid black"></iframe>
     </center>
     `;
     }
