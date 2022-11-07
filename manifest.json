@@ -29,6 +29,10 @@
         {
             "matches": ["https://schoology.harker.org/lunch"],
             "js": ["lunch.js"]
+        },
+        {
+            "matches": ["https://schoology.harker.org/schedule"],
+            "js": ["schedule.js"]
         }
     ],
     "background": {

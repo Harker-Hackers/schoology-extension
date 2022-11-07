@@ -127,7 +127,7 @@ var but = document.getElementsByClassName(
 )[0];
 
 try {
-    but.onclick = setTimeout(append_to_usermenu, 50);
+    but.onclick = function() {setTimeout(append_to_usermenu, 25);}
 } catch (err) {}
 
 // retrieve username and password from `/login`
@@ -154,460 +154,460 @@ if (location.pathname.split("/")[1] == "zoom_links") {
 }
 
 // schedule (`/schedule`)
-if (location.pathname.split("/")[1] == "schedule") {
-    document.title = "Schedule";
-    try {
-        document.getElementById("content-wrapper").innerHTML = `
-		<style>
-		.loader {
-		border: 5px solid #f3f3f3;
-		border-radius: 50%;
-		border-top: 5px solid #3498db;
-		width: 25px;
-		height: 25px;
-		margin-left:10px;
-		margin-top:10px;
-		margin-bottom:10px;
-		-webkit-animation: spin 2s linear infinite; /* Safari */
-		animation: spin 2s linear infinite;
-		}
+// if (location.pathname.split("/")[1] == "schedule") {
+//     document.title = "Schedule";
+//     try {
+//         document.getElementById("content-wrapper").innerHTML = `
+// 		<style>
+// 		.loader {
+// 		border: 5px solid #f3f3f3;
+// 		border-radius: 50%;
+// 		border-top: 5px solid #3498db;
+// 		width: 25px;
+// 		height: 25px;
+// 		margin-left:10px;
+// 		margin-top:10px;
+// 		margin-bottom:10px;
+// 		-webkit-animation: spin 2s linear infinite; /* Safari */
+// 		animation: spin 2s linear infinite;
+// 		}
 
-		.daySched{
-			margin-bottom:20px;
-			background-color:rgb(255,255,255);
-			border: 1px solid rgb(199,199,199);
-		}
+// 		.daySched{
+// 			margin-bottom:20px;
+// 			background-color:rgb(255,255,255);
+// 			border: 1px solid rgb(199,199,199);
+// 		}
 
-		.selDay {
-			border: 1px solid rgb(199,199,30);
-		}
+// 		.selDay {
+// 			border: 1px solid rgb(199,199,30);
+// 		}
 
-		.dayName {
-			margin-left:10px;
-			margin-top:5px;
-			margin-bottom:5px;
-			font-size:2em;
-		}
+// 		.dayName {
+// 			margin-left:10px;
+// 			margin-top:5px;
+// 			margin-bottom:5px;
+// 			font-size:2em;
+// 		}
 
-		.courseName{
-			margin-left:10px;
-			margin-top:10px;
-			margin-bottom:10px;
-			font-size:1.25em;
-		}
+// 		.courseName{
+// 			margin-left:10px;
+// 			margin-top:10px;
+// 			margin-bottom:10px;
+// 			font-size:1.25em;
+// 		}
 
-		.mnctnt {
-			background-color:rgb(240,240,239);
-			padding:30px;
-			margin: 0px;
-		}
+// 		.mnctnt {
+// 			background-color:rgb(240,240,239);
+// 			padding:30px;
+// 			margin: 0px;
+// 		}
 
-		.wrap {
-			width:374px;
-			height:265px;
-			margin-bottom:20px;
-			padding-top:10px;
-			background-color:rgb(255,255,255);
-			border:none;
-			border-radius:2px;
-			-wekbit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
-			-moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
-			-ms-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
-			-o-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
-			box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
-			margin-left:auto;
-			margin-right:auto;
-		}
+// 		.wrap {
+// 			width:374px;
+// 			height:265px;
+// 			margin-bottom:20px;
+// 			padding-top:10px;
+// 			background-color:rgb(255,255,255);
+// 			border:none;
+// 			border-radius:2px;
+// 			-wekbit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+// 			-moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+// 			-ms-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+// 			-o-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+// 			box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+// 			margin-left:auto;
+// 			margin-right:auto;
+// 		}
 
-		.mg {
-			font-size:1.25em;
-			margin-left: auto;
-			margin-right:auto;
-			margin-top:10px;
-			text-align:center;
-		}
+// 		.mg {
+// 			font-size:1.25em;
+// 			margin-left: auto;
+// 			margin-right:auto;
+// 			margin-top:10px;
+// 			text-align:center;
+// 		}
 
-		.inpINFL1 {
-			width:200px !important;
-			height:30px !important;
-			margin-left: calc(50% - 100px) !important;
-			padding:0px !important;
-			background-color: rgb(255,255,255) !important;
-			border-width: 1px !important;
-			border-color: rgb(0,0,0) !important;
-		}
+// 		.inpINFL1 {
+// 			width:200px !important;
+// 			height:30px !important;
+// 			margin-left: calc(50% - 100px) !important;
+// 			padding:0px !important;
+// 			background-color: rgb(255,255,255) !important;
+// 			border-width: 1px !important;
+// 			border-color: rgb(0,0,0) !important;
+// 		}
 
-		input:-webkit-autofill,
-		input:-webkit-autofill:hover,
-		input:-webkit-autofill:focus textarea:-webkit-autofill,
-		textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
-		select:-webkit-autofill,
-		select:-webkit-autofill:hover,
-		select:-webkit-autofill:focus {
-			-webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
-		}
+// 		input:-webkit-autofill,
+// 		input:-webkit-autofill:hover,
+// 		input:-webkit-autofill:focus textarea:-webkit-autofill,
+// 		textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+// 		select:-webkit-autofill,
+// 		select:-webkit-autofill:hover,
+// 		select:-webkit-autofill:focus {
+// 			-webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+// 		}
 
-		.sTime {
-			margin-left:10px;
-		}
+// 		.sTime {
+// 			margin-left:10px;
+// 		}
 
-		.bINFL1:hover {
-			background-color: rgb(245,245,245);
-		}
+// 		.bINFL1:hover {
+// 			background-color: rgb(245,245,245);
+// 		}
 
 
-		/* Safari */
-		@-webkit-keyframes spin {
-		0% { -webkit-transform: rotate(0deg); }
-		100% { -webkit-transform: rotate(360deg); }
-		}
+// 		/* Safari */
+// 		@-webkit-keyframes spin {
+// 		0% { -webkit-transform: rotate(0deg); }
+// 		100% { -webkit-transform: rotate(360deg); }
+// 		}
 
-		@keyframes spin {
-		0% { transform: rotate(0deg); }
-		100% { transform: rotate(360deg); }
-		}
-		</style>
-		<div id="schedLoader">
-		<p style="margin-left:5px;" id="loadingtxt">Loading...</p>
-		<div class="loader" id="loadingsc"></div>
-		</div>
-		`;
-    } catch (err) {}
+// 		@keyframes spin {
+// 		0% { transform: rotate(0deg); }
+// 		100% { transform: rotate(360deg); }
+// 		}
+// 		</style>
+// 		<div id="schedLoader">
+// 		<p style="margin-left:5px;" id="loadingtxt">Loading...</p>
+// 		<div class="loader" id="loadingsc"></div>
+// 		</div>
+// 		`;
+//     } catch (err) {}
 
-    // changing infinite campus schedule (triggered on button click)
-    if (location.pathname == "/schedule/inf") {
-        var contentdiv = document.getElementById("schedLoader");
-        contentdiv.innerHTML = `
-		<div id="mnctnt" class="mnctnt">
-		<div class="wrap" id="cntWrap">
-		<form id="fUP">
-		<p class="mg">Infinite Campus Credentials</p>
-		<p id="userDef" class="mg">Loading...</p>
-		<input id="userInp" class="mg inpINFL1"></input>
-		<p id="passDef" class="mg">Loading...</p>
-		<input id="passInp" class="mg inpINFL1" type="password"></input>
-		<button id="submit" class="mg inpINFL1 bINFL1" style="color: rgb(0,0,0) !important;">Submit</button>
-		</form>
-		</div>
-		</div>
-		`;
+//     // changing infinite campus schedule (triggered on button click)
+//     if (location.pathname == "/schedule/inf") {
+//         var contentdiv = document.getElementById("schedLoader");
+//         contentdiv.innerHTML = `
+// 		<div id="mnctnt" class="mnctnt">
+// 		<div class="wrap" id="cntWrap">
+// 		<form id="fUP">
+// 		<p class="mg">Infinite Campus Credentials</p>
+// 		<p id="userDef" class="mg">Loading...</p>
+// 		<input id="userInp" class="mg inpINFL1"></input>
+// 		<p id="passDef" class="mg">Loading...</p>
+// 		<input id="passInp" class="mg inpINFL1" type="password"></input>
+// 		<button id="submit" class="mg inpINFL1 bINFL1" style="color: rgb(0,0,0) !important;">Submit</button>
+// 		</form>
+// 		</div>
+// 		</div>
+// 		`;
 
-        function cont(username, t) {
-            if (username == {} || !username) {
-                if (t == 1) {
-                    chrome.storage.local.get("scUser", (username) =>
-                        cont(username["scUser"], 0)
-                    );
-                } else {
-                    logout((destination = "schedule"));
-                }
-            }
-            document.getElementById("userDef").textContent = String("Username");
-            document.getElementById("userInp").setAttribute("value", username);
-        }
+//         function cont(username, t) {
+//             if (username == {} || !username) {
+//                 if (t == 1) {
+//                     chrome.storage.local.get("scUser", (username) =>
+//                         cont(username["scUser"], 0)
+//                     );
+//                 } else {
+//                     logout((destination = "schedule"));
+//                 }
+//             }
+//             document.getElementById("userDef").textContent = String("Username");
+//             document.getElementById("userInp").setAttribute("value", username);
+//         }
 
-        chrome.storage.local.get("infUser", (data) => cont(data["infUser"], 1));
+//         chrome.storage.local.get("infUser", (data) => cont(data["infUser"], 1));
 
-        function cont2(pw, t) {
-            if (pw == {} || !pw) {
-                if (t == 1) {
-                    chrome.storage.local.get("scPass", (pw) =>
-                        cont2(pw["scPass"], 0)
-                    );
-                } else {
-                    logout((destination = "schedule"));
-                }
-            }
-            document.getElementById("passDef").textContent = String("Password");
+//         function cont2(pw, t) {
+//             if (pw == {} || !pw) {
+//                 if (t == 1) {
+//                     chrome.storage.local.get("scPass", (pw) =>
+//                         cont2(pw["scPass"], 0)
+//                     );
+//                 } else {
+//                     logout((destination = "schedule"));
+//                 }
+//             }
+//             document.getElementById("passDef").textContent = String("Password");
 
-            document.getElementById("passInp").setAttribute("value", pw);
-        }
-        chrome.storage.local.get("infPass", (data) =>
-            cont2(data["infPass"], 1)
-        );
+//             document.getElementById("passInp").setAttribute("value", pw);
+//         }
+//         chrome.storage.local.get("infPass", (data) =>
+//             cont2(data["infPass"], 1)
+//         );
 
-        function submitForm(e) {
-            e.preventDefault();
-            chrome.storage.local.set({
-                infUser: document.getElementById("userInp").value,
-            });
-            chrome.storage.local.set({
-                infPass: document.getElementById("passInp").value,
-            });
-            location.href = "https://schoology.harker.org/schedule/update";
-        }
+//         function submitForm(e) {
+//             e.preventDefault();
+//             chrome.storage.local.set({
+//                 infUser: document.getElementById("userInp").value,
+//             });
+//             chrome.storage.local.set({
+//                 infPass: document.getElementById("passInp").value,
+//             });
+//             location.href = "https://schoology.harker.org/schedule/update";
+//         }
 
-        document.getElementById("fUP").onsubmit = submitForm;
-    } else {
-        var formCallback3 = function () {
-            chrome.runtime.sendMessage(
-                {
-                    type: "url",
-                    cors: true,
-                    url:
-                        "https://harkerca.infinitecampus.org/campus/resources/portal/roster?_expand=%7BsectionPlacements-%7Bterm%7D%7D",
-                },
-                (data) => schedCB(data)
-            );
-        };
-        var formCallBack2 = function (pData) {
-            try {
-                var samltok = pData.match(
-                    '<input type="hidden" name="SAMLResponse" value="(.*)" /><'
-                )[1];
-                chrome.runtime.sendMessage(
-                    {
-                        type: "urlPost",
-                        url:
-                            "https://harkerca.infinitecampus.org/campus/SSO/harker/SIS/",
-                        rawData: {
-                            SAMLResponse: samltok,
-                            RelayState: "/harker/SIS/",
-                        },
-                    },
-                    (data) => formCallback3()
-                );
-            } catch (err) {
-                formCallback3();
-            }
-        };
-        var formCallBack = function (pData) {
-            chrome.runtime.sendMessage(
-                {
-                    type: "url",
-                    url:
-                        "https://harkerca.infinitecampus.org/campus/SSO/harker/SIS/",
-                },
-                (data) => formCallBack2(data)
-            );
-        };
+//         document.getElementById("fUP").onsubmit = submitForm;
+//     } else {
+//         var formCallback3 = function () {
+//             chrome.runtime.sendMessage(
+//                 {
+//                     type: "url",
+//                     cors: true,
+//                     url:
+//                         "https://harkerca.infinitecampus.org/campus/resources/portal/roster?_expand=%7BsectionPlacements-%7Bterm%7D%7D",
+//                 },
+//                 (data) => schedCB(data)
+//             );
+//         };
+//         var formCallBack2 = function (pData) {
+//             try {
+//                 var samltok = pData.match(
+//                     '<input type="hidden" name="SAMLResponse" value="(.*)" /><'
+//                 )[1];
+//                 chrome.runtime.sendMessage(
+//                     {
+//                         type: "urlPost",
+//                         url:
+//                             "https://harkerca.infinitecampus.org/campus/SSO/harker/SIS/",
+//                         rawData: {
+//                             SAMLResponse: samltok,
+//                             RelayState: "/harker/SIS/",
+//                         },
+//                     },
+//                     (data) => formCallback3()
+//                 );
+//             } catch (err) {
+//                 formCallback3();
+//             }
+//         };
+//         var formCallBack = function (pData) {
+//             chrome.runtime.sendMessage(
+//                 {
+//                     type: "url",
+//                     url:
+//                         "https://harkerca.infinitecampus.org/campus/SSO/harker/SIS/",
+//                 },
+//                 (data) => formCallBack2(data)
+//             );
+//         };
 
-        function getSched() {
-            var next = function (p) {
-                var username = p;
-                var nexttwo = function (q) {
-                    var pass = q;
-                    chrome.runtime.sendMessage(
-                        {
-                            type: "urlPost",
-                            url:
-                                "https://www.harker.org/fs/auth/finalsite/callback",
-                            formData: {
-                                username: username,
-                                password: pass,
-                            },
-                        },
-                        (data) => formCallBack(data)
-                    );
-                };
-                var pass = chrome.storage.local.get("infPass", function (k) {
-                    if ("infPass" in k) {
-                        nexttwo(k.infPass);
-                    } else {
-                        var pass = chrome.storage.local.get(
-                            "scPass",
-                            function (k) {
-                                if ("scPass" in k) {
-                                    nexttwo(k.scPass);
-                                } else {
-                                    logout((destination = "schedule"));
-                                }
-                            }
-                        );
-                    }
-                });
-            };
-            chrome.storage.local.get("infUser", function (k) {
-                if ("infUser" in k) {
-                    next(k.infUser);
-                } else {
-                    chrome.storage.local.get("scUser", function (k) {
-                        if ("scUser" in k) {
-                            next(k.scUser);
-                        } else {
-                            logout((destination = "schedule"));
-                        }
-                    });
-                }
-            });
-        }
+//         function getSched() {
+//             var next = function (p) {
+//                 var username = p;
+//                 var nexttwo = function (q) {
+//                     var pass = q;
+//                     chrome.runtime.sendMessage(
+//                         {
+//                             type: "urlPost",
+//                             url:
+//                                 "https://www.harker.org/fs/auth/finalsite/callback",
+//                             formData: {
+//                                 username: username,
+//                                 password: pass,
+//                             },
+//                         },
+//                         (data) => formCallBack(data)
+//                     );
+//                 };
+//                 var pass = chrome.storage.local.get("infPass", function (k) {
+//                     if ("infPass" in k) {
+//                         nexttwo(k.infPass);
+//                     } else {
+//                         var pass = chrome.storage.local.get(
+//                             "scPass",
+//                             function (k) {
+//                                 if ("scPass" in k) {
+//                                     nexttwo(k.scPass);
+//                                 } else {
+//                                     logout((destination = "schedule"));
+//                                 }
+//                             }
+//                         );
+//                     }
+//                 });
+//             };
+//             chrome.storage.local.get("infUser", function (k) {
+//                 if ("infUser" in k) {
+//                     next(k.infUser);
+//                 } else {
+//                     chrome.storage.local.get("scUser", function (k) {
+//                         if ("scUser" in k) {
+//                             next(k.scUser);
+//                         } else {
+//                             logout((destination = "schedule"));
+//                         }
+//                     });
+//                 }
+//             });
+//         }
 
-        try {
-            if (location.pathname.split("/")[2] == "update") {
-                try {
-                    getSched();
-                } catch (err) {
-                    getSched();
-                }
-            } else {
-                chrome.storage.local.get("schedData", function (k) {
-                    if ("schedData" in k) {
-                        try {
-                            schedCB(k.schedData);
-                        } catch (err) {
-                            getSched();
-                        }
-                    } else {
-                        getSched();
-                    }
-                });
-            }
-        } catch (err) {}
+//         try {
+//             if (location.pathname.split("/")[2] == "update") {
+//                 try {
+//                     getSched();
+//                 } catch (err) {
+//                     getSched();
+//                 }
+//             } else {
+//                 chrome.storage.local.get("schedData", function (k) {
+//                     if ("schedData" in k) {
+//                         try {
+//                             schedCB(k.schedData);
+//                         } catch (err) {
+//                             getSched();
+//                         }
+//                     } else {
+//                         getSched();
+//                     }
+//                 });
+//             }
+//         } catch (err) {}
 
-        var schedCB = function (rawData) {
-            //Schedule function
-            var data = JSON.parse(rawData);
-            try {
-                document.getElementById("loadingsc").remove();
-                document.getElementById("loadingtxt").remove();
-            } catch (err) {}
-            var content_div = document.getElementById("schedLoader");
-            var settings_div = document.getElementById("center-top");
+//         var schedCB = function (rawData) {
+//             //Schedule function
+//             var data = JSON.parse(rawData);
+//             try {
+//                 document.getElementById("loadingsc").remove();
+//                 document.getElementById("loadingtxt").remove();
+//             } catch (err) {}
+//             var content_div = document.getElementById("schedLoader");
+//             var settings_div = document.getElementById("center-top");
 
-            settings_div.innerHTML = `
-	<button style="margin-top:0px;margin-bottom:0px;height:30px;font-size:1.1em;"><span style="margin-left:5px;
-	margin-right:5px;" id="updateSched">Update Schedule</span></button>
-	<button style="margin-top:0px;margin-bottom:0px;margin-left:5px;height:30px;font-size:1.1em;"><span style="margin-left:5px;
-	margin-right:5px;" id="changeInfPW">Use Different Username and Password</span></button>
+//             settings_div.innerHTML = `
+// 	<button style="margin-top:0px;margin-bottom:0px;height:30px;font-size:1.1em;"><span style="margin-left:5px;
+// 	margin-right:5px;" id="updateSched">Update Schedule</span></button>
+// 	<button style="margin-top:0px;margin-bottom:0px;margin-left:5px;height:30px;font-size:1.1em;"><span style="margin-left:5px;
+// 	margin-right:5px;" id="changeInfPW">Use Different Username and Password</span></button>
 
-	`;
+// 	`;
 
-            ///////////////////////////////////////
-            document.getElementById("updateSched").onclick = updateAllScheds;
-            document.getElementById("changeInfPW").onclick = changeInfPW;
+//             ///////////////////////////////////////
+//             document.getElementById("updateSched").onclick = updateAllScheds;
+//             document.getElementById("changeInfPW").onclick = changeInfPW;
 
-            chrome.storage.local.set({ schedData: rawData });
+//             chrome.storage.local.set({ schedData: rawData });
 
-            var today = new Date();
-            var psn = { 1: "M", 2: "T", 3: "W", 4: "R", 5: "F" };
-            var psNames = {
-                M: "Monday",
-                T: "Tuesday",
-                W: "Wednesday",
-                R: "Thursday",
-                F: "Friday",
-            };
+//             var today = new Date();
+//             var psn = { 1: "M", 2: "T", 3: "W", 4: "R", 5: "F" };
+//             var psNames = {
+//                 M: "Monday",
+//                 T: "Tuesday",
+//                 W: "Wednesday",
+//                 R: "Thursday",
+//                 F: "Friday",
+//             };
 
-            var curDay = psn[today.getDay()];
+//             var curDay = psn[today.getDay()];
 
-            for (dy in psn) {
-                var day = psn[dy];
-                var crsList = [];
-                for (crs in data) {
-                    var course = data[crs];
-                    var sections = data[crs].sectionPlacements;
-                    try {
-                        var p = sections.length;
-                    } catch (err) {
-                        document.getElementById(
-                            "content-wrapper"
-                        ).innerHTML += `
-						<p>We recieved no schedule from infinite campus. Click on update schedule to reload the schedule from infinite campus. If you get this error again, your infinite campus username and password are invalid. Click on "Use Different Username and Password" and input your infinite campus credentials.</p>`;
-                        throw "invalid username and pw";
-                    }
-                    for (sec = 0; sec < sections.length; sec++) {
-                        var section = sections[sec];
-                        if (section.periodScheduleName !== day) {
-                            continue;
-                        }
-                        var startDate = new Date(section.term.startDate);
-                        var endDate = new Date(section.term.endDate);
-                        var spTime = section.startTime.split(":");
-                        var stime = new Date(
-                            2000,
-                            0,
-                            0,
-                            spTime[0],
-                            spTime[1],
-                            spTime[2],
-                            0
-                        );
-                        var epTime = section.endTime.split(":");
-                        var etime = new Date(
-                            2000,
-                            0,
-                            0,
-                            epTime[0],
-                            epTime[1],
-                            epTime[2],
-                            0
-                        );
-                        if (startDate < today && today < endDate) {
-                            for (crsI = 0; crsI < crsList.length; crsI++) {
-                                var spTime2 = crsList[crsI].startTime.split(
-                                    ":"
-                                );
-                                var stime2 = new Date(
-                                    2000,
-                                    0,
-                                    0,
-                                    spTime2[0],
-                                    spTime2[1],
-                                    spTime2[2],
-                                    0
-                                );
-                                if (spTime < spTime2) {
-                                    break;
-                                }
-                            }
-                            crsList.splice(crsI, 0, section);
-                        }
-                    }
-                }
+//             for (dy in psn) {
+//                 var day = psn[dy];
+//                 var crsList = [];
+//                 for (crs in data) {
+//                     var course = data[crs];
+//                     var sections = data[crs].sectionPlacements;
+//                     try {
+//                         var p = sections.length;
+//                     } catch (err) {
+//                         document.getElementById(
+//                             "content-wrapper"
+//                         ).innerHTML += `
+// 						<p>We recieved no schedule from infinite campus. Click on update schedule to reload the schedule from infinite campus. If you get this error again, your infinite campus username and password are invalid. Click on "Use Different Username and Password" and input your infinite campus credentials.</p>`;
+//                         throw "invalid username and pw";
+//                     }
+//                     for (sec = 0; sec < sections.length; sec++) {
+//                         var section = sections[sec];
+//                         if (section.periodScheduleName !== day) {
+//                             continue;
+//                         }
+//                         var startDate = new Date(section.term.startDate);
+//                         var endDate = new Date(section.term.endDate);
+//                         var spTime = section.startTime.split(":");
+//                         var stime = new Date(
+//                             2000,
+//                             0,
+//                             0,
+//                             spTime[0],
+//                             spTime[1],
+//                             spTime[2],
+//                             0
+//                         );
+//                         var epTime = section.endTime.split(":");
+//                         var etime = new Date(
+//                             2000,
+//                             0,
+//                             0,
+//                             epTime[0],
+//                             epTime[1],
+//                             epTime[2],
+//                             0
+//                         );
+//                         if (startDate < today && today < endDate) {
+//                             for (crsI = 0; crsI < crsList.length; crsI++) {
+//                                 var spTime2 = crsList[crsI].startTime.split(
+//                                     ":"
+//                                 );
+//                                 var stime2 = new Date(
+//                                     2000,
+//                                     0,
+//                                     0,
+//                                     spTime2[0],
+//                                     spTime2[1],
+//                                     spTime2[2],
+//                                     0
+//                                 );
+//                                 if (spTime < spTime2) {
+//                                     break;
+//                                 }
+//                             }
+//                             crsList.splice(crsI, 0, section);
+//                         }
+//                     }
+//                 }
 
-                var dayDiv = document.createElement("div");
-                dayDiv.className = "daySched";
-                if (day == curDay) {
-                    dayDiv.className += " selDay";
-                }
-                var tempP = document.createElement("p");
-                tempP.className = "dayName";
-                tempP.textContent = psNames[day];
-                dayDiv.appendChild(tempP);
+//                 var dayDiv = document.createElement("div");
+//                 dayDiv.className = "daySched";
+//                 if (day == curDay) {
+//                     dayDiv.className += " selDay";
+//                 }
+//                 var tempP = document.createElement("p");
+//                 tempP.className = "dayName";
+//                 tempP.textContent = psNames[day];
+//                 dayDiv.appendChild(tempP);
 
-                for (i = 0; i < crsList.length; i++) {
-                    dayDiv.innerHTML += "<hr>";
-                    var p = document.createElement("p");
-                    var b = document.createElement("b");
-                    var stspan = document.createElement("span");
-                    var stspan2 = document.createElement("span");
-                    var stspanb = document.createElement("span");
-                    stspan.className = "sTime";
-                    stspan2.className = "eTime";
-                    stspanb.className = "bTime";
-                    p.className = "courseName";
-                    b.textContent = crsList[i].courseName;
-                    var parseTime = function (t) {
-                        var tm = t.split(":");
-                        var apm = "am";
-                        if (tm[0][0] == "0") {
-                            tm[0] = tm[0].slice(1);
-                        }
-                        var pt = parseInt(tm[0]);
-                        if (pt > 12) {
-                            pt -= 12;
-                            apm = "pm";
-                        }
-                        tm[0] = String(pt);
-                        tm.pop();
-                        tm = tm.join(":");
-                        tm += " " + apm;
-                        return tm;
-                    };
-                    stspan.textContent = parseTime(crsList[i].startTime);
-                    stspan2.textContent = parseTime(crsList[i].endTime);
-                    stspanb.textContent = " - ";
-                    p.appendChild(b);
-                    p.appendChild(stspan);
-                    p.appendChild(stspanb);
-                    p.appendChild(stspan2);
-                    dayDiv.appendChild(p);
-                }
-                content_div.appendChild(dayDiv);
-            }
-        };
-    }
-}
+//                 for (i = 0; i < crsList.length; i++) {
+//                     dayDiv.innerHTML += "<hr>";
+//                     var p = document.createElement("p");
+//                     var b = document.createElement("b");
+//                     var stspan = document.createElement("span");
+//                     var stspan2 = document.createElement("span");
+//                     var stspanb = document.createElement("span");
+//                     stspan.className = "sTime";
+//                     stspan2.className = "eTime";
+//                     stspanb.className = "bTime";
+//                     p.className = "courseName";
+//                     b.textContent = crsList[i].courseName;
+//                     var parseTime = function (t) {
+//                         var tm = t.split(":");
+//                         var apm = "am";
+//                         if (tm[0][0] == "0") {
+//                             tm[0] = tm[0].slice(1);
+//                         }
+//                         var pt = parseInt(tm[0]);
+//                         if (pt > 12) {
+//                             pt -= 12;
+//                             apm = "pm";
+//                         }
+//                         tm[0] = String(pt);
+//                         tm.pop();
+//                         tm = tm.join(":");
+//                         tm += " " + apm;
+//                         return tm;
+//                     };
+//                     stspan.textContent = parseTime(crsList[i].startTime);
+//                     stspan2.textContent = parseTime(crsList[i].endTime);
+//                     stspanb.textContent = " - ";
+//                     p.appendChild(b);
+//                     p.appendChild(stspan);
+//                     p.appendChild(stspanb);
+//                     p.appendChild(stspan2);
+//                     dayDiv.appendChild(p);
+//                 }
+//                 content_div.appendChild(dayDiv);
+//             }
+//         };
+//     }
+// }
 
 function overdueAssignmentFixer(context, mClass) {
     mClass = mClass.replaceAll(" :", ":");
