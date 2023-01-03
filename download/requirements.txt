@@ -1,4 +1,4 @@
-flask
-gunicorn
-rockset
-Flask-Limiter
+flask==2.2.2
+gunicorn==20.0.4
+rockset==0.7.49
+Flask-Limiter==3.1.0
